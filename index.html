@@ -1,0 +1,1442 @@
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="color-scheme" content="light"><meta name="referrer" content="no-referrer"><meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src data: blob:; font-src 'none'; connect-src 'none'; media-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'"><title>Spatial Lab · 空间词汇实验室 — 交互演示</title><link rel="icon" href='data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"%3E%3Crect width="32" height="32" rx="8" fill="%23247c65"/%3E%3Cpath d="m16 5 10 6v11l-10 6-10-6V11z" fill="%239ed9bc"/%3E%3C/svg%3E'><style>:root{--bg:#f5f7f5;--white:#fff;--ink:#23382f;--muted:#7a8982;--accent:#247c65;--accent-dark:#185b4b;--tint:#e9f3ed;--line:#e6ebe6;--orange:#dc865e;--orange-bg:#fbf1e8;--radius:20px;--shadow:0 5px 26px #233c3010;--font:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",Arial,sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);font-size:14px;line-height:1.65}button,input,textarea,select{font:inherit;color:inherit}button{cursor:pointer}button:disabled{cursor:not-allowed;opacity:.5}button,a,input,textarea,select,[tabindex]{outline-offset:4px}button:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #70ae94}input:focus,textarea:focus,select:focus{outline:2px solid #8ab9a1;outline-offset:1px}button{border:0;background:none}a{color:var(--accent)}.icon{width:20px;height:20px;flex-shrink:0;vertical-align:middle}.icon.small{width:16px;height:16px}.icon.large{width:26px;height:26px}h1,h2,h3,h4,p{margin:0}h1{font-size:30px;letter-spacing:-1px;line-height:1.35}h2{font-size:22px;line-height:1.5}h3{font-size:16px}small{font-size:12px}.muted{color:var(--muted)}.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.skip-link{position:fixed;top:-100px;z-index:1000;background:var(--accent);color:white;padding:10px 20px}.skip-link:focus{top:4px}.app-shell{min-height:100vh;display:grid;grid-template-columns:226px minmax(0,1fr)}.sidebar{position:fixed;inset:0 auto 0 0;width:226px;background:#fff;border-right:1px solid var(--line);padding:30px 21px 22px;display:flex;flex-direction:column;z-index:30}.brand{display:flex;align-items:center;gap:11px;padding:0 4px 35px}.brand svg{width:38px;height:38px}.brand-name{font-size:19px;font-weight:750;letter-spacing:-.6px}.brand-cn{font-size:10px;color:var(--muted);letter-spacing:1.6px}.nav-group-label{font-size:10px;letter-spacing:2px;color:#9ca99f;padding:0 15px;margin:5px 0 13px}.main-nav{display:grid;gap:7px}.nav-item{display:flex;width:100%;gap:12px;align-items:center;text-align:left;padding:12px 14px;border-radius:11px;color:#74847a;transition:background .15s;min-height:46px}.nav-item:hover{background:#f5f8f4}.nav-item.active{background:var(--tint);color:var(--accent-dark);font-weight:650}.nav-item .count{margin-left:auto;background:#d8e9dc;border-radius:6px;padding:0 6px;font-size:11px}.sidebar-divider{height:1px;background:var(--line);margin:27px 12px}.category-nav{display:grid;gap:5px}.category-item{padding:10px 14px;display:flex;align-items:center;gap:10px;border-radius:9px;text-align:left;font-size:12px;color:#77867d}.category-item:hover{background:#f6f8f5}.category-item.active{color:var(--accent);background:#f5f9f5}.category-item span:last-child{margin-left:auto;font-variant-numeric:tabular-nums;color:#9aa69c}.dot{width:7px;height:7px;border-radius:50%;background:#98b79f;display:inline-block}.dot.motion{background:#dba883}.dot.geometry{background:#9babc8}.sidebar-bottom{margin-top:auto;padding-top:22px}.offline-note{border:1px solid #e4eee3;background:#f8faf5;border-radius:13px;padding:15px 12px}.offline-note-title{font-size:12px;font-weight:600;display:flex;align-items:center;gap:8px}.offline-note p{font-size:10px;line-height:1.7;color:#8b988c;margin-top:6px}.profile{display:flex;align-items:center;gap:10px;padding:20px 5px 0}.avatar{width:33px;height:33px;border-radius:10px;background:#f0eadd;color:#8f856d;display:grid;place-items:center;font-weight:600;font-size:12px}.profile strong{display:block;font-size:12px}.profile small{font-size:10px;color:#94a093}.main-shell{grid-column:2;min-width:0}.topbar{height:78px;background:#ffffffc7;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 38px;gap:15px}.breadcrumb{font-size:12px;color:#97a497;display:flex;align-items:center;gap:12px}.breadcrumb strong{font-weight:500;color:#4f6354}.top-actions{display:flex;align-items:center;gap:17px}.demo-badge{border:1px solid #e3e9df;color:#789075;background:#f8fbf5;border-radius:7px;padding:5px 10px;font-size:10px;letter-spacing:.3px;white-space:nowrap}.demo-badge:before{content:'';display:inline-block;width:5px;height:5px;border-radius:50%;background:#8bae81;vertical-align:middle;margin-right:7px}.text-link{font-size:12px;color:#788a7a;display:inline-flex;align-items:center;gap:6px}.text-link:hover{color:var(--accent)}.content{max-width:1420px;margin:auto;padding:33px 38px 25px}.page-heading{display:flex;justify-content:space-between;align-items:center;gap:20px;margin-bottom:25px}.eyebrow{font-size:10px;letter-spacing:2.2px;color:#82947f;font-weight:600;margin-bottom:7px}.heading-description{color:var(--muted);font-size:12px;margin-top:9px}.steps{display:flex;gap:16px;font-size:11px;color:#96a294;align-items:center;white-space:nowrap}.steps span{display:inline-flex;align-items:center;gap:7px}.steps b{font-size:10px;background:#e9efe5;color:#6e8c72;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;font-weight:500}.steps .active{color:#466e54}.steps .active b{background:#dceadd}.search-row{display:flex;align-items:center;gap:16px;margin-bottom:22px}.search-form{flex:1;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #e0e7df;border-radius:12px;padding:4px 6px 4px 17px;height:50px;box-shadow:0 2px 3px #1b382803}.search-form>.icon{color:#98a597;width:18px}.search-form input{border:0;outline:none!important;background:transparent;min-width:0;flex:1;font-size:12px;height:40px}.search-form input::placeholder{color:#a4aea0}.search-form button{background:#f1f5ee;border:1px solid #e5ebe0;border-radius:8px;padding:8px 14px;font-size:11px;color:#6d826b}.search-tip{font-size:11px;color:#92a08d}.unknown-panel{border:1px solid #e8ddc7;background:#fcf7ec;border-radius:12px;padding:14px 17px;margin:-8px 0 20px;display:flex;align-items:center;gap:12px;justify-content:space-between;font-size:12px}.unknown-panel p{color:#88795d;font-size:11px;margin-top:3px}.learning-grid{display:grid;grid-template-columns:minmax(0,1.58fr) minmax(280px,1fr);gap:22px;align-items:start}.scene-card,.practice-card,.panel{background:#fff;border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}.scene-header{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:23px 27px 19px}.word-eyebrow{color:#96a18f;font-size:9px;letter-spacing:1.7px;font-weight:600;display:flex;align-items:center;gap:7px}.word-title{font-size:40px;line-height:1.25;font-weight:620;letter-spacing:-1.3px;margin-top:7px}.word-title.question-title{font-size:28px;letter-spacing:-.6px}.word-title.instruction{font-size:24px;letter-spacing:-.5px;max-width:520px}.word-sub{font-size:10px;color:#95a08e;display:flex;gap:8px;margin-top:6px}.word-sub .icon{width:12px;height:12px}.icon-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:1px solid var(--line);border-radius:9px;color:#7e9380;background:#fff;flex-shrink:0}.icon-btn:hover{background:#f2f7f0;color:var(--accent)}.scene-wrap{margin:0 16px;position:relative;border:1px solid #e7ede1;border-radius:13px;overflow:hidden;background-color:#f3f7ed;background-image:radial-gradient(#cedac966 .8px,transparent .8px);background-size:20px 20px;min-height:200px}.scene-wrap #sceneHost{line-height:0}.scene-svg{width:100%;height:auto;display:block}.scene-svg.interactive{cursor:crosshair;touch-action:none}.scene-svg.interactive .subject-object{cursor:grab}.scene-tags{position:absolute;top:13px;left:14px;display:flex;gap:7px;z-index:2;pointer-events:none}.tiny-pill{display:inline-flex;gap:5px;align-items:center;font-size:9px;color:#84957c;background:#ffffffc9;border-radius:5px;padding:3px 8px;border:1px solid #e6eede}.scene-xray{position:absolute;right:12px;top:12px;font-size:9px;display:flex;gap:4px;align-items:center;color:#819276;background:#ffffffe3;border:1px solid #e3eadd;border-radius:6px;padding:4px 8px;z-index:3}.scene-xray .icon{width:12px;height:12px}.scene-xray.active{color:var(--accent);background:#e5f3e3}.scene-legend{position:absolute;bottom:10px;left:15px;display:flex;gap:12px;font-size:8px;color:#98a28c;pointer-events:none}.legend-dot{width:5px;height:5px;background:#df986f;display:inline-block;border-radius:50%;margin-right:5px}.legend-dot.reference{background:#95b89b;border-radius:1px}.scene-phase{position:absolute;right:14px;bottom:10px;font-size:9px;color:#96a08b;pointer-events:none}.player{display:flex;gap:12px;align-items:center;padding:17px 25px 10px}.play-btn{width:35px;height:35px;border-radius:50%;background:var(--accent);color:#fff;display:grid;place-items:center;flex-shrink:0}.play-btn:hover{background:var(--accent-dark)}.play-btn .icon{width:16px;height:16px}.player .mini-control{color:#8e9d88;padding:4px;display:grid;place-items:center}.player .mini-control .icon{width:17px}.timeline{flex:1;min-width:30px;accent-color:var(--accent);height:3px}.time-text{font-size:9px;color:#98a38f;font-variant-numeric:tabular-nums;min-width:53px}.speed-select{border:0;background:none;font-size:10px;color:#84967e;width:43px;padding:0}.player-bottom{display:flex;justify-content:space-between;align-items:center;padding:0 26px 16px;color:#96a18d;font-size:9px}.mini-action{font-size:10px;color:#7f947a;display:flex;align-items:center;gap:5px}.mini-action .icon{width:13px;height:13px}.frame-buttons{display:flex;gap:8px;margin:4px 25px 15px}.frame-btn{flex:1;border:1px solid var(--line);background:#fbfcf8;border-radius:7px;padding:6px 10px;color:#839177;font-size:10px}.frame-btn.active{background:#e8f0e3;border-color:#c1d5be;color:#53744e}.static-caption{padding:14px 25px 18px;font-size:10px;color:#86957f;display:flex;justify-content:space-between;align-items:center}.practice-card{padding:24px 24px 22px;min-height:480px}.practice-eyebrow{color:#96a08c;letter-spacing:1.6px;font-size:9px;display:flex;align-items:center;justify-content:space-between}.practice-eyebrow .counter{font-size:10px;letter-spacing:0;background:#f4f6ee;border-radius:6px;padding:3px 7px;color:#859078}.mode-tabs{display:flex;padding:4px;border-radius:9px;background:#f3f5ef;margin:18px 0 22px;gap:3px}.mode-tab{flex:1;border-radius:7px;padding:8px 4px;font-size:11px;color:#99a08e;white-space:nowrap}.mode-tab.active{background:#fff;box-shadow:0 2px 5px #2137240a;color:#54724b;font-weight:600}.practice-card h3{font-size:16px;font-weight:600;line-height:1.6;margin-bottom:6px}.quiz-desc{font-size:11px;color:#98a18e;margin-bottom:17px;line-height:1.75}.answer-input{resize:vertical;min-height:83px;width:100%;background:#fdfdfa;border:1px solid #e1e6db;border-radius:10px;padding:12px 13px;font-size:12px;line-height:1.8}.answer-input::placeholder{color:#b3b8a9}.input-footer{font-size:9px;color:#a2ab97;display:flex;justify-content:space-between;margin:5px 1px 13px}.btn{display:inline-flex;justify-content:center;align-items:center;gap:7px;border:1px solid var(--line);background:white;border-radius:9px;padding:10px 15px;font-size:12px;line-height:1.5;min-height:38px;font-weight:500}.btn:hover{background:#f4f8f0}.btn.primary{background:var(--accent);border-color:var(--accent);color:white}.btn.primary:hover{background:var(--accent-dark)}.btn.soft{background:#eef4e8;color:#6b845f;border-color:#e1eada}.btn.danger{border-color:#ecd9d4;color:#a16f62}.btn.small{min-height:31px;padding:6px 12px;font-size:10px}.btn .icon{width:15px;height:15px}.btn.wide{width:100%}.quiz-submit{margin-bottom:12px}.secondary-actions{display:flex;justify-content:space-between;align-items:center;gap:6px;margin:5px 0 12px}.subtle-btn{display:inline-flex;align-items:center;gap:5px;font-size:10px;color:#87927a;padding:7px 0}.subtle-btn .icon{width:14px;height:14px}.subtle-btn:hover{color:var(--accent)}.answer-section{padding-top:15px;border-top:1px solid var(--line);margin-top:12px}.answer-section[hidden]{display:none}.answer-translation{font-size:18px;font-weight:550;color:#57744d;line-height:1.5}.answer-example{font-size:11px;color:#7a8b6e;margin-top:9px;line-height:1.8}.answer-example span{display:block;font-size:10px;color:#97a389}.revealed-marker{font-size:9px;color:#b39364;display:flex;align-items:center;gap:4px;margin:7px 0}.hint-box{padding:10px 12px;background:#fbf6e9;color:#8c805e;border:1px solid #f1e7cd;border-radius:9px;font-size:11px;margin:12px 0}.feedback{border:1px solid #e0e6d9;padding:13px 13px;border-radius:11px;margin:13px 0;background:#f4f7f0}.feedback.correct{background:#eef7ee;border-color:#d8e9d5;color:#4d7c46}.feedback.close{background:#fbf6e9;border-color:#eadfc2;color:#9a8351}.feedback.incorrect{background:#fcf3ed;border-color:#edddcd;color:#a17759}.feedback.uncertain,.feedback.not-evaluated{background:#f3f5f2;border-color:#e1e6dd;color:#84907a}.feedback-title{display:flex;align-items:center;gap:7px;font-size:12px;font-weight:600;margin-bottom:4px}.feedback-title .icon{width:16px;height:16px}.feedback p{font-size:11px;line-height:1.75}.feedback .source-line{font-size:9px;opacity:.8;margin-top:9px}.practice-footnote{border-top:1px solid var(--line);padding-top:14px;margin-top:14px;color:#9ba591;font-size:9px;line-height:1.8;display:flex;gap:6px}.practice-footnote .icon{width:12px;height:12px;margin-top:3px}.next-row{display:flex;align-items:center;justify-content:space-between;margin:14px 3px 0;gap:10px}.contrast-btn{font-size:10px;color:#91a185;display:flex;align-items:center;gap:7px}.contrast-btn strong{font-weight:500;color:#648257}.contrast-btn .icon{width:13px;height:13px}.next-btn{display:flex;align-items:center;gap:5px;color:#638452;font-size:11px}.next-btn .icon{width:14px;height:14px}.word-shelf{margin-top:28px}.section-top{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:15px}.section-top h3{font-size:13px;display:flex;align-items:center;gap:9px}.section-top h3 span{font-size:10px;color:#9ca68f;font-weight:400}.filter-chips{display:flex;gap:5px;flex-wrap:wrap}.filter-chip{border:1px solid transparent;padding:4px 10px;border-radius:6px;font-size:10px;color:#99a48d}.filter-chip.active{background:#edf2e7;border-color:#e3eada;color:#6d875c}.word-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:9px}.word-tile{border:1px solid #e2e8dc;background:#fff;border-radius:10px;display:flex;align-items:center;gap:7px;padding:12px 11px;text-align:left;min-height:49px;transition:.15s;min-width:0}.word-tile:hover{border-color:#b7cdae;transform:translateY(-1px)}.word-tile.active{border-color:#93b18b;background:#edf5e9}.word-tile .tiny-index{color:#b6bfa9;font-size:8px;min-width:12px}.word-tile strong{font-size:11px;font-weight:500;line-height:1.4;overflow-wrap:anywhere}.word-tile .visited-dot{width:5px;height:5px;border-radius:50%;background:#87a978;flex-shrink:0;margin-left:auto}.footer{display:flex;align-items:center;justify-content:space-between;gap:15px;padding:26px 0 3px;color:#acb39f;font-size:9px}.footer-links{display:flex;gap:17px}.footer button{font-size:9px;color:#a3ad95;padding:0}.footer button:hover{color:#66845a}.focus-note{background:#edf4e9;border:1px solid #dfe9d9;border-radius:11px;padding:12px 15px;margin-bottom:20px;color:#6c8560;font-size:11px;display:flex;gap:9px;align-items:center}.focus-note .icon{width:17px}.placement-instructions{color:#819377;background:#f6f8f1;padding:12px;border-radius:9px;font-size:11px;margin:15px 0}.direction-pad{display:grid;grid-template-columns:repeat(3,36px);grid-template-rows:repeat(2,33px);gap:5px;justify-content:center;margin:10px 0 16px}.direction-pad button{border:1px solid #dfe7d7;background:#f8faf4;border-radius:6px;padding:5px}.direction-pad .icon{width:15px;height:15px}.direction-pad [data-dir=up]{grid-column:2}.direction-pad [data-dir=left]{grid-column:1;grid-row:2}.direction-pad [data-dir=down]{grid-column:2;grid-row:2}.direction-pad [data-dir=right]{grid-column:3;grid-row:2}.blank{padding:35px 20px;text-align:center;color:#98a38d}.blank .icon{width:30px;height:30px;color:#a8baa0;margin-bottom:12px}.blank h3{font-size:14px;color:#788e6b;margin-bottom:5px}.blank p{font-size:11px;max-width:440px;margin:0 auto 15px}.metric-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:23px}.metric{background:#fff;border:1px solid var(--line);border-radius:14px;padding:18px 21px}.metric-label{color:#96a28b;font-size:10px;letter-spacing:.5px;display:flex;align-items:center;gap:6px}.metric-label .icon{width:14px;height:14px}.metric-number{font-size:27px;color:#587449;margin-top:3px;font-weight:550;letter-spacing:-.7px}.metric-number small{font-size:11px;color:#a1aa93;font-weight:400;letter-spacing:0;margin-left:8px}.panel{padding:24px;margin-bottom:22px}.panel-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.panel-heading h3{font-size:14px}.panel-heading p{font-size:10px;color:#98a38c;margin-top:4px}.library-tabs{display:flex;gap:4px;align-items:center;border-bottom:1px solid var(--line);margin-bottom:20px}.library-tab{padding:10px 16px;font-size:12px;color:#8c9c7e;border-bottom:2px solid transparent}.library-tab.active{border-bottom-color:var(--accent);color:var(--accent);font-weight:600}.library-card-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}.library-card{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#fff}.library-card .thumbnail{background:#f3f7ed;line-height:0;border-bottom:1px solid var(--line);position:relative}.library-card .thumbnail .tag{position:absolute;top:9px;left:9px}.library-card-info{padding:13px}.library-card h4{font-size:14px;font-weight:550;line-height:1.4}.library-card p{font-size:10px;color:#96a089;line-height:1.5;margin:5px 0 13px;min-height:15px}.card-actions{display:flex;justify-content:space-between;align-items:center;gap:7px}.tag{font-size:9px;display:inline-flex;border-radius:5px;background:#edf4e8;color:#7a926d;padding:3px 7px;align-items:center;gap:4px}.tag.amber{background:#fbf3e2;color:#aa9668}.tag.grey{background:#f0f3ee;color:#91a087}.tag.blue{background:#edf2f7;color:#788fa5}.request-box{background:#f9fbf6;border:1px dashed #d9e4d0;border-radius:12px;padding:18px;margin-bottom:23px}.request-box h3{font-size:12px;margin-bottom:9px}.request-form{display:flex;gap:8px}.request-form input{background:white;border:1px solid #dfe6d7;border-radius:8px;padding:9px 12px;min-width:0;flex:1;font-size:12px}.sample-words{font-size:10px;color:#a1aa94;display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}.sample-words button{font-size:10px;border-bottom:1px dotted #c7d3bc;padding:0;color:#7a9768}.job-row{border:1px solid var(--line);border-radius:12px;padding:17px;display:flex;align-items:center;gap:15px;margin-bottom:11px;background:#fff}.job-icon{width:40px;height:40px;flex-shrink:0;background:#f0f4e9;border-radius:10px;display:grid;place-items:center;color:#829c70}.job-icon .icon{width:19px}.job-content{flex:1;min-width:0}.job-content h4{font-size:14px;font-weight:550}.job-content p{font-size:10px;color:#99a78b;line-height:1.7;margin-top:3px}.job-actions{display:flex;gap:7px;align-items:center}.pipeline{display:flex;gap:4px;margin-top:9px;align-items:center;color:#9ba58c;font-size:9px}.pipeline span{background:#f1f5ea;border-radius:4px;padding:2px 6px}.pipeline span.done{background:#e4efdc;color:#668255}.settings-banner{padding:20px;border:1px solid #dfe7d7;background:#f0f5e9;border-radius:14px;display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:22px}.settings-banner h3{font-size:14px;display:flex;gap:8px;align-items:center}.settings-banner p{font-size:11px;color:#8e9b7e;margin-top:5px}.switch{position:relative;display:inline-block;width:41px;height:24px;border-radius:20px;background:#d9e1d2;flex-shrink:0;padding:3px;transition:background .2s}.switch span{display:block;width:18px;height:18px;border-radius:50%;background:white;box-shadow:0 1px 3px #33442118;transition:transform .2s}.switch.on{background:#6e9760}.switch.on span{transform:translateX(17px)}.model-routes{display:grid;gap:0}.route-row{display:grid;grid-template-columns:1.05fr 1.1fr 1.1fr .7fr;align-items:center;gap:18px;border-bottom:1px solid var(--line);padding:18px 0}.route-row:last-child{border-bottom:0}.route-task h4{font-size:12px;font-weight:550}.route-task small{font-size:9px;color:#a2ae94}.field label{display:block;font-size:9px;color:#9ca68e;margin-bottom:5px}.field select{background:#fafbf7;border:1px solid #e0e6d9;border-radius:8px;padding:9px 10px;width:100%;font-size:11px}.field .inline-check{display:flex;align-items:center;gap:5px;font-size:10px;color:#839776;white-space:nowrap}.inline-check input{accent-color:var(--accent)}.capability-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:13px;padding-top:13px;border-top:1px solid var(--line)}.capability-chip{font-size:10px;color:#93a083;background:#f7f9f2;border:1px solid #e8edde;border-radius:6px;padding:5px 9px}.probe-controls{display:grid;grid-template-columns:1fr 1fr auto;gap:14px;align-items:end}.probe-result{margin-top:15px;padding:13px;background:#f7f9f3;border:1px solid #e3e9d8;border-radius:10px;font-size:11px;color:#849374}.probe-result strong{font-size:11px;display:block;margin-bottom:5px;color:#627d52}.data-table-wrap{overflow-x:auto}.data-table{width:100%;border-collapse:collapse;text-align:left;font-size:11px}.data-table th{padding:11px 10px;color:#a3ad92;font-size:9px;font-weight:500;border-bottom:1px solid var(--line);white-space:nowrap}.data-table td{padding:12px 10px;border-bottom:1px solid #f0f3e9;color:#819071;white-space:nowrap;font-size:10px}.data-table tr:last-child td{border-bottom:0}.data-table .word-cell{font-weight:550;color:#5d774e;font-size:12px}.row-actions{display:flex;gap:12px}.small-note{font-size:10px;color:#9aa68b;line-height:1.8;margin-top:12px}.records-toolbar{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:15px}.record-status{font-size:10px;border-radius:5px;padding:3px 7px;background:#f1f4ea}.record-status.correct{color:#568746;background:#edf5e6}.record-status.incorrect{color:#a27f55;background:#faf1e5}.record-status.close{color:#a18b54;background:#faf5e5}.toast{position:fixed;bottom:26px;left:calc(50% + 113px);transform:translateX(-50%);max-width:600px;background:#29483b;color:#fff;padding:12px 20px;border-radius:11px;font-size:12px;box-shadow:0 8px 25px #1c322b25;z-index:80;display:flex;gap:8px;align-items:center;animation:toast-in .2s ease}.toast .icon{width:16px;height:16px}.modal-backdrop{position:fixed;inset:0;background:#1d332a55;backdrop-filter:blur(3px);z-index:90;display:flex;align-items:center;justify-content:center;padding:25px}.modal{background:#fffefb;border:1px solid #e4e9df;border-radius:20px;box-shadow:0 20px 80px #21332530;max-width:750px;width:100%;max-height:90vh;overflow:auto;padding:25px;position:relative}.modal.modal-small{max-width:440px}.modal-top{display:flex;justify-content:space-between;align-items:start;gap:12px;margin-bottom:17px}.modal-top h2{font-size:22px}.modal-top p{font-size:11px;color:#9aa58e;margin-top:5px}.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.compare-pane{background:#f3f7ed;border:1px solid #e1e8d8;border-radius:12px;overflow:hidden}.compare-pane h3{padding:16px 16px 0;font-size:19px;color:#557548}.compare-pane p{font-size:11px;color:#91a181;padding:0 16px 17px}.modal .small-note{padding:6px 0}.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.about-item{border:1px solid var(--line);border-radius:12px;padding:17px;background:#f9fbf5}.about-item h3{font-size:13px;margin:8px 0 6px}.about-item p{font-size:11px;color:#8c9e7c;line-height:1.9}.about-item .icon{color:#89a679}.review-scene{background:#f3f7ed;border:1px solid var(--line);border-radius:13px;margin:12px 0}.modal-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.mobile-brand{display:none}.mobile-nav{display:none}.storage-warning{background:#fff5dc;color:#9c8553;padding:7px 12px;text-align:center;font-size:11px}.spinner{display:inline-block;width:14px;height:14px;border:2px solid currentColor;border-right-color:transparent;border-radius:50%;animation:spin .8s linear infinite}.empty-shelf-note{font-size:11px;color:#99a58c;padding:20px}.progress-dots{display:flex;gap:4px;align-items:center}.progress-dots i{display:block;width:6px;height:6px;border-radius:50%;background:#dfe7d6}.progress-dots i.done{background:#7da568}
+@keyframes spin{to{transform:rotate(360deg)}}@keyframes toast-in{from{opacity:0;bottom:15px}to{opacity:1;bottom:26px}}
+@media(min-width:1600px){.scene-wrap{margin:0 21px}.practice-card{padding:28px}.word-title{font-size:45px}}
+@media(max-width:1240px){.app-shell{grid-template-columns:190px minmax(0,1fr)}.sidebar{width:190px;padding:25px 15px}.brand{gap:7px}.brand-name{font-size:17px}.content{padding:28px 25px}.topbar{padding:0 25px}.learning-grid{gap:16px;grid-template-columns:minmax(0,1.35fr) minmax(275px,1fr)}.practice-card{padding:21px 19px}.scene-header{padding:21px}.word-title{font-size:35px}.steps{display:none}.word-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.library-card-grid{grid-template-columns:repeat(3,minmax(0,1fr))}.toast{left:calc(50% + 95px)}}
+@media(max-width:1030px){.app-shell{grid-template-columns:174px minmax(0,1fr)}.sidebar{width:174px;padding:24px 12px}.brand-name{font-size:16px}.brand svg{width:31px;height:31px}.brand-cn{font-size:8px}.brand{padding-bottom:30px;gap:7px}.nav-item{padding:11px 10px;gap:9px;font-size:12px}.nav-item .icon{width:18px}.category-item{padding:9px 10px;font-size:10px}.offline-note p{font-size:9px}.content{padding:25px 21px}.learning-grid{grid-template-columns:1fr}.scene-wrap{max-height:390px}.scene-svg{max-height:380px}.practice-card{min-height:auto}.mode-tabs{max-width:360px;margin:12px 0 15px}.practice-card h3{font-size:18px}.search-tip{display:none}.practice-eyebrow{font-size:9px}.word-grid{grid-template-columns:repeat(4,minmax(0,1fr))}.library-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.route-row{grid-template-columns:1fr 1fr;gap:13px}.route-task{grid-column:1/-1}.field:last-child{grid-column:1/-1}.probe-controls{grid-template-columns:1fr 1fr}.probe-controls .btn{grid-column:1/-1}.toast{left:calc(50% + 87px)}.main-shell{min-width:0}}
+@media(max-width:700px){.app-shell{display:block}.sidebar{display:none}.main-shell{width:100%}.topbar{height:65px;padding:0 20px;background:#fff}.breadcrumb{display:none}.mobile-brand{display:flex;align-items:center;gap:8px;font-size:16px;font-weight:650;letter-spacing:-.5px}.mobile-brand svg{width:30px;height:30px}.top-actions{gap:10px}.top-actions .text-link{font-size:0}.top-actions .text-link .icon{width:18px}.demo-badge{font-size:9px;padding:4px 7px}.demo-badge:before{margin-right:5px}.content{padding:23px 17px 85px}.page-heading{margin-bottom:20px}h1{font-size:25px;letter-spacing:-.7px}.eyebrow{font-size:9px;letter-spacing:1.9px}.heading-description{font-size:11px;margin-top:7px}.search-row{gap:0;margin-bottom:17px}.search-form{height:46px;padding-left:13px}.search-form input{font-size:11px}.search-form button{padding:7px 11px}.learning-grid{gap:18px}.scene-header{padding:19px 21px 16px}.word-title{font-size:36px}.word-title.question-title{font-size:26px}.word-title.instruction{font-size:23px}.scene-wrap{margin:0 11px;min-height:170px;border-radius:11px}.scene-svg{min-height:180px}.scene-tags{top:10px;left:10px}.scene-xray{top:9px;right:9px;font-size:8px}.tiny-pill{font-size:8px;padding:2px 6px}.player{padding:16px 19px 10px;gap:9px}.player-bottom{padding:0 20px 16px}.practice-card{padding:22px}.mode-tabs{max-width:none;margin:13px 0 22px}.mode-tab{font-size:12px;padding:9px}.practice-card h3{font-size:17px}.quiz-desc{font-size:12px}.answer-input{font-size:14px;min-height:93px}.btn{min-height:42px;font-size:12px}.btn.small{min-height:35px;font-size:11px}.subtle-btn{font-size:11px;padding:10px 0}.practice-footnote{font-size:10px}.next-row{margin:15px 2px 0}.word-shelf{margin-top:26px}.section-top{align-items:flex-start;flex-direction:column;gap:10px}.filter-chip{padding:6px 10px;font-size:10px}.word-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.word-tile{padding:12px 9px;gap:6px;min-height:49px}.word-tile strong{font-size:11px}.word-tile .tiny-index{font-size:8px;min-width:9px}.word-tile .visited-dot{display:none}.footer{font-size:8px;align-items:flex-start}.footer-links{gap:12px}.footer button{font-size:9px}.mobile-nav{position:fixed;bottom:0;left:0;right:0;background:#ffffffee;backdrop-filter:blur(15px);border-top:1px solid #e0e7d8;display:grid;grid-template-columns:repeat(4,1fr);padding:9px 12px max(9px,env(safe-area-inset-bottom));z-index:40;gap:7px}.mobile-nav button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:5px;border-radius:9px;font-size:9px;color:#a0ae91}.mobile-nav button.active{color:var(--accent);background:#eff5e9}.mobile-nav .icon{width:19px;height:19px}.metric-grid{gap:9px;margin-bottom:18px}.metric{padding:14px 12px;border-radius:11px}.metric-label{font-size:9px;gap:4px}.metric-label .icon{display:none}.metric-number{font-size:23px}.metric-number small{display:block;font-size:9px;margin:0}.panel{padding:18px}.library-tabs{overflow-x:auto}.library-tab{padding:10px 12px;white-space:nowrap;font-size:11px}.request-box{padding:14px}.request-form{gap:6px}.request-form input{width:100px;font-size:12px}.job-row{flex-wrap:wrap;padding:14px;gap:10px}.job-actions{width:100%;padding-left:50px;flex-wrap:wrap}.job-content p{font-size:10px}.library-card-grid{gap:10px}.library-card-info{padding:10px}.library-card h4{font-size:12px}.library-card p{font-size:9px}.card-actions .btn{font-size:9px;min-height:30px;padding:6px 8px}.card-actions .subtle-btn{font-size:9px}.settings-banner{padding:17px}.settings-banner p{font-size:10px}.settings-banner h3{font-size:13px}.route-row{gap:10px}.field select{font-size:11px;padding:10px 8px}.field .inline-check{font-size:10px}.data-table td,.data-table th{padding:10px 8px}.probe-controls{grid-template-columns:1fr}.probe-controls .btn{grid-column:auto}.probe-result{font-size:11px}.records-toolbar{align-items:flex-start;flex-wrap:wrap}.toast{bottom:85px;left:50%;width:calc(100% - 35px);max-width:520px;font-size:11px;padding:13px 16px;animation:none}.modal-backdrop{padding:15px}.modal{padding:19px;border-radius:16px;max-height:88vh}.modal-top h2{font-size:20px}.compare-grid{gap:9px}.compare-pane h3{font-size:16px;padding:12px 12px 0}.compare-pane p{font-size:10px;padding:0 12px 13px}.compare-pane .scene-svg{min-height:100px}.about-grid{gap:10px}.about-item{padding:13px}.about-item h3{font-size:12px}.about-item p{font-size:10px}.unknown-panel{align-items:flex-start;flex-direction:column;font-size:12px}.direction-pad{grid-template-columns:repeat(3,43px);grid-template-rows:repeat(2,40px)}.scene-legend{font-size:7px;gap:8px}.scene-phase{font-size:8px}.frame-buttons{margin:5px 18px 15px}.frame-btn{padding:8px;font-size:11px}.time-text{font-size:9px}.info-banner{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+/* Readability pass: teaching text uses larger sizes and stronger contrast. */
+.heading-description{font-size:13px;color:#72806b}.practice-card h3{font-size:18px}.quiz-desc{font-size:12px;color:#75826b}.answer-input{font-size:14px}.quiz-submit{font-size:13px}.subtle-btn{color:#708064}.feedback p{font-size:12px}.practice-footnote{color:#7a866d}.word-sub{color:#89967d}.frame-btn{color:#6c805e}.answer-example{font-size:12px}.answer-example span{font-size:11px;color:#7e906f}
+@media(max-width:700px){.heading-description{font-size:11px}.practice-card h3{font-size:17px}.answer-input{font-size:14px}}
+/* Prevent intrinsic control widths from overflowing the smallest phones. */
+.learning-grid,.learning-grid>section,.scene-card,.practice-card,.route-row,.field,.library-card{min-width:0}
+.timeline{width:0;min-width:20px}
+@media(max-width:1030px){.learning-grid{grid-template-columns:minmax(0,1fr)}.route-row{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:370px){.topbar{padding:0 14px}.top-actions{gap:7px}.mobile-brand{font-size:14px}.mobile-brand svg{width:26px;height:26px}.player{gap:7px;padding-left:14px;padding-right:14px}.scene-header{padding-left:17px;padding-right:17px}.practice-card{padding:18px}.mode-tab{padding:8px 5px;font-size:11px}.scene-xray{right:7px}.scene-tags .tiny-pill:nth-child(2){display:none}.time-text{min-width:43px;font-size:8px}.speed-select{width:39px}.settings-banner{gap:10px}.route-row{grid-template-columns:minmax(0,1fr)}.field{grid-column:auto!important}.library-card-info{padding:9px}.library-card h4{overflow-wrap:anywhere}.card-actions{gap:3px;flex-wrap:wrap}.about-grid,.compare-grid{grid-template-columns:minmax(0,1fr)}.metric-number{font-size:21px}}
+</style></head><body><a href="#main" class="skip-link">跳转到主要内容</a><div id="app"></div><noscript>此演示需要开启 JavaScript；不需要互联网或 API 密钥。</noscript><script>(()=>{'use strict';const modules={"app":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const content_1 = require("./content");
+const store_1 = require("./store");
+const ui_1 = require("./ui");
+const render_1 = require("./render");
+const scene_1 = require("./scene");
+const icons_1 = require("./icons");
+const rules_1 = require("./rules");
+const mock_1 = require("./mock");
+const geometry_1 = require("./geometry");
+const contracts_1 = require("./contracts");
+const root = document.getElementById('app');
+const ui = (0, ui_1.newUi)();
+let raw = null;
+try {
+    raw = localStorage.getItem(store_1.STORAGE_KEY);
+}
+catch {
+    ui.storageOk = false;
+}
+let state = (0, store_1.loadStore)(raw);
+if (!raw && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches)
+    state.reduceMotion = true;
+let frame = 0, lastFrame = 0, toastTimer = 0, renderFocus = null, submitSeq = 0, probeSeq = 0;
+const current = () => (0, content_1.byId)(state.currentId, (0, store_1.published)(state));
+const all = () => (0, store_1.published)(state);
+const save = () => { try {
+    localStorage.setItem(store_1.STORAGE_KEY, JSON.stringify(state));
+}
+catch {
+    ui.storageOk = false;
+} };
+const draw = () => { root.innerHTML = (0, render_1.renderApp)(state, ui); };
+function toast(text) {
+    ui.toast = text;
+    clearTimeout(toastTimer);
+    document.querySelector('.toast')?.remove();
+    const el = document.createElement('div');
+    el.className = 'toast';
+    el.setAttribute('role', 'status');
+    el.innerHTML = (0, icons_1.icon)('check');
+    const span = document.createElement('span');
+    span.textContent = text;
+    el.appendChild(span);
+    root.appendChild(el);
+    toastTimer = window.setTimeout(() => { ui.toast = ''; document.querySelector('.toast')?.remove(); }, 3700);
+}
+function stop() { ui.playing = false; cancelAnimationFrame(frame); frame = 0; lastFrame = 0; }
+function render() { if (ui.page !== 'learn' || ui.modal)
+    stop(); draw(); }
+function markVisited() { if (!state.visited.includes(state.currentId))
+    state.visited.push(state.currentId); }
+function select(id) {
+    const card = all().find(c => c.id === id);
+    if (!card)
+        return;
+    stop();
+    submitSeq++;
+    ui.busy = false;
+    state.currentId = id;
+    if (state.mode === 'place' && !card.place)
+        state.mode = 'zh';
+    ui.answer = '';
+    ui.result = null;
+    ui.showTranslation = false;
+    ui.showHint = false;
+    ui.position = { x: 140, y: 290 };
+    ui.t = 0;
+    ui.variant = 0;
+    ui.xray = false;
+    ui.unknown = '';
+    ui.search = '';
+    markVisited();
+    save();
+    render();
+}
+function changeMode(mode) {
+    if (!['zh', 'en', 'place'].includes(mode))
+        return;
+    stop();
+    submitSeq++;
+    ui.busy = false;
+    state.mode = mode;
+    if (mode === 'place' && !current().place) {
+        const target = all().find(c => c.id === 'under') || all().find(c => c.place);
+        if (target)
+            state.currentId = target.id;
+        else {
+            state.mode = 'zh';
+            toast('当前没有适合摆放练习的已发布词卡。');
+            return;
+        }
+    }
+    ui.result = null;
+    ui.answer = '';
+    ui.showTranslation = false;
+    ui.showHint = false;
+    ui.position = { x: 140, y: 290 };
+    ui.t = 0;
+    ui.search = '';
+    ui.unknown = '';
+    markVisited();
+    save();
+    render();
+}
+function paintScene() {
+    if (ui.page !== 'learn')
+        return;
+    const host = document.getElementById('sceneHost');
+    if (!host)
+        return;
+    const c = current();
+    const activeId = document.activeElement === host.firstElementChild;
+    host.innerHTML = (0, scene_1.sceneSvg)(c.scene, ui.t, { variant: ui.variant, xray: ui.xray, placement: state.mode === 'place' ? ui.position : undefined, interactive: state.mode === 'place', description: c.description });
+    if (activeId)
+        host.firstElementChild?.focus({ preventScroll: true });
+    const timeline = document.getElementById('timeline');
+    if (timeline)
+        timeline.value = String(Math.round(ui.t * 1000));
+    const time = document.getElementById('timeText');
+    if (time)
+        time.textContent = `${(ui.t * 3.2).toFixed(1)} / 3.2 s`;
+    const ph = document.getElementById('scenePhase');
+    if (ph && current().motion)
+        ph.textContent = (0, render_1.phase)(ui.t);
+    const b = document.getElementById('playButton');
+    if (b) {
+        b.innerHTML = (0, icons_1.icon)(ui.playing ? 'pause' : 'play');
+        b.setAttribute('aria-label', ui.playing ? '暂停动画' : '播放动画');
+    }
+}
+function tick(now) {
+    if (!ui.playing || ui.page !== 'learn' || state.mode === 'place' || state.reduceMotion)
+        return;
+    if (lastFrame)
+        ui.t = Math.min(1, ui.t + (now - lastFrame) / 3200 * ui.speed);
+    lastFrame = now;
+    if (ui.t >= 1) {
+        ui.playing = false;
+        lastFrame = 0;
+    }
+    paintScene();
+    if (ui.playing)
+        frame = requestAnimationFrame(tick);
+}
+function play(restart = false) {
+    if (state.mode === 'place' || !current().motion)
+        return;
+    if (state.reduceMotion) {
+        ui.showFrames = true;
+        ui.t = restart ? 0 : Math.min(1, ui.t + .5);
+        render();
+        return;
+    }
+    if (restart || ui.t >= 1)
+        ui.t = 0;
+    if (ui.playing && !restart) {
+        stop();
+        paintScene();
+        return;
+    }
+    stop();
+    ui.playing = true;
+    frame = requestAnimationFrame(tick);
+    paintScene();
+}
+function record(card, mode, result, independent) {
+    state.attempts.push({ ...result, id: 'local-attempt-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 5), cardId: card.id, mode, independent, at: Date.now() });
+    state.attempts = state.attempts.slice(-100);
+    save();
+}
+async function submit() {
+    if (ui.busy)
+        return;
+    const card = current(), mode = state.mode;
+    const key = (0, render_1.revealKey)(card.id, mode), independent = !state.revealed.includes(key) && !state.hinted.includes(key);
+    if (mode === 'place') {
+        const correct = (0, geometry_1.placeValid)(card.scene, ui.position);
+        ui.result = { status: 'evaluated', source: 'geometry', verdict: correct ? 'correct' : 'incorrect', reason: correct ? 'POSITION_MATCH' : 'POSITION_MISMATCH', feedback: correct ? '位置放对了！现在看看英文指令和你摆出的关系。' : '再比较球与参照物的位置。可以点击新的位置，或用方向键调整。' };
+        record(card, mode, ui.result, independent);
+        render();
+        return;
+    }
+    const text = document.getElementById('answerInput')?.value ?? ui.answer;
+    ui.answer = text;
+    if (!text.trim()) {
+        toast('先写下一点想法，再提交。');
+        document.getElementById('answerInput')?.focus();
+        return;
+    }
+    if ([...text].length > 200) {
+        toast('请把回答控制在 200 个字以内。');
+        return;
+    }
+    (0, contracts_1.parseAttemptInput)({ cardId: card.id, mode, answer: text });
+    // No answer is stored in localStorage, URLs, logs, or exported records.
+    const d = (0, rules_1.judgeRule)(card, mode, text);
+    if (d) {
+        ui.result = (0, rules_1.ruleResult)(d);
+        record(card, mode, ui.result, independent);
+        render();
+        return;
+    }
+    if (!state.mockEnabled) {
+        ui.result = { ...(0, rules_1.unavailable)(), source: 'rules' };
+        record(card, mode, ui.result, independent);
+        render();
+        return;
+    }
+    ui.busy = true;
+    ui.result = null;
+    const seq = ++submitSeq;
+    const route = { ...state.routes.grade }, fault = state.nextFault;
+    state.nextFault = 'none';
+    save();
+    render();
+    const out = await (0, mock_1.runMock)({ route, fault, task: 'grade', card, mode, answer: text });
+    if (seq !== submitSeq)
+        return;
+    // Existing results retain their task snapshot even when settings change mid-flight.
+    state.logs.unshift(out.log);
+    state.logs = state.logs.slice(0, 40);
+    record(card, mode, out.result, independent);
+    if (seq === submitSeq && state.currentId === card.id && state.mode === mode) {
+        ui.result = out.result;
+        ui.busy = false;
+    }
+    save();
+    render();
+}
+function addRequest(term) {
+    const q = (0, content_1.normalizedWord)(term);
+    if (!q) {
+        toast('先填写一个英文词或短语。');
+        return;
+    }
+    const existing = all().find(c => (0, content_1.normalizedWord)(c.word) === q);
+    if (existing) {
+        ui.page = 'learn';
+        select(existing.id);
+        toast('已复用演示发布库中的素材，没有新建生成任务。');
+        return;
+    }
+    try {
+        const { created } = (0, store_1.createRequest)(state, q);
+        save();
+        ui.page = 'library';
+        ui.libraryTab = 'requests';
+        ui.unknown = '';
+        render();
+        toast(created ? '新词需求已保存到本地演示资料库。' : '已有相同需求，已复用原任务。');
+    }
+    catch (err) {
+        toast(err.message);
+    }
+}
+function openModal(type, id) {
+    renderFocus = document.activeElement;
+    ui.modal = { type, id };
+    stop();
+    render();
+    queueMicrotask(() => document.querySelector('.modal button')?.focus());
+}
+function closeModal() { ui.modal = null; render(); if (renderFocus?.id)
+    document.getElementById(renderFocus.id)?.focus();
+else
+    document.querySelector('.top-actions button')?.focus(); }
+function navigate(page) { ui.page = page; ui.modal = null; render(); window.scrollTo({ top: 0, behavior: 'auto' }); }
+function movePoint(dir) {
+    const map = { left: { x: -15, y: 0 }, right: { x: 15, y: 0 }, up: { x: 0, y: -15 }, down: { x: 0, y: 15 } };
+    const v = map[dir];
+    if (!v)
+        return;
+    ui.position = (0, geometry_1.snapPoint)(current().scene, { x: ui.position.x + v.x, y: ui.position.y + v.y });
+    ui.result = null;
+    paintScene();
+    document.getElementById('feedbackSlot').innerHTML = '';
+}
+function mutateRoute(task, key, value) {
+    const old = state.routes[task];
+    if (!old)
+        return;
+    ui.lastRoutes[task] = { ...old };
+    const r = { ...old };
+    if (key === 'fallbackApproved')
+        r.fallbackApproved = value === true;
+    else {
+        if (value !== 'deepseek' && value !== 'qwen')
+            return;
+        r[key] = value;
+        if (r.primary === r.secondary)
+            r[key === 'primary' ? 'secondary' : 'primary'] = value === 'deepseek' ? 'qwen' : 'deepseek';
+    }
+    r.revision++;
+    state.routes[task] = r;
+    save();
+    render();
+    toast(`${render_1.taskNames[task]}目标配置已切换至 v${r.revision}；当前仍是本地模拟。`);
+}
+async function probe() {
+    if (ui.probeBusy)
+        return;
+    if (!state.mockEnabled) {
+        toast('先打开“模拟路由实验”开关；真实服务始终关闭。');
+        return;
+    }
+    const task = ui.probeTask, route = { ...state.routes[task] }, fault = state.nextFault;
+    state.nextFault = 'none';
+    ui.probeBusy = true;
+    ui.probeResult = null;
+    const seq = ++probeSeq;
+    save();
+    render();
+    const out = await (0, mock_1.runMock)({ route, fault, task, card: (0, content_1.byId)('through'), mode: 'zh', answer: '我觉得是从内部经过' });
+    if (seq !== probeSeq)
+        return;
+    ui.probeBusy = false;
+    ui.probeResult = out.result;
+    state.logs.unshift(out.log);
+    state.logs = state.logs.slice(0, 40);
+    save();
+    render();
+}
+function exportData() {
+    const obj = { format: 'spatial-lab-demo-export-v1', exportedAt: new Date().toISOString(), demoOnly: true, realAiCalls: 0, attempts: state.attempts, routes: state.routes, mockLogs: state.logs, jobs: state.jobs, disclosure: '本地演示元数据；不含原始自由回答、真实学生身份或密钥。' };
+    const blob = new Blob([JSON.stringify(obj, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'spatial-lab-demo-records.json';
+    a.click();
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    toast('已导出演示记录，不含原始输入或真实学生信息。');
+}
+root.addEventListener('submit', ev => {
+    ev.preventDefault();
+    const id = ev.target.id;
+    if (id === 'answerForm')
+        void submit();
+    if (id === 'wordSearch') {
+        const q = document.getElementById('wordQuery').value.trim();
+        if (!q) {
+            toast('输入一个英文词或短语，或者从下面的词库选择。');
+            return;
+        }
+        const hit = (0, content_1.lookup)(q, all());
+        if (hit.length) {
+            select(hit[0].id);
+            toast('已从演示资料库读取，无需生成。');
+        }
+        else {
+            ui.unknown = q;
+            ui.search = q;
+            render();
+        }
+    }
+    if (id === 'staffRequest')
+        addRequest(document.getElementById('newTerm').value);
+});
+root.addEventListener('input', ev => {
+    const el = ev.target;
+    if (el.id === 'answerInput') {
+        ui.answer = el.value;
+        const counter = document.getElementById('answerCount');
+        if (counter)
+            counter.textContent = [...el.value].length + '/200';
+    }
+    if (el.id === 'wordQuery')
+        ui.search = el.value;
+    if (el.id === 'timeline') {
+        stop();
+        ui.t = Number(el.value) / 1000;
+        paintScene();
+    }
+});
+root.addEventListener('change', ev => {
+    const el = ev.target;
+    if (el.id === 'speed') {
+        ui.speed = Number(el.value);
+        return;
+    }
+    if (el.id === 'probeTask') {
+        ui.probeTask = el.value;
+        return;
+    }
+    if (el.id === 'fault') {
+        state.nextFault = el.value;
+        save();
+        return;
+    }
+    if (el.dataset.routeTask && el.dataset.routeKey)
+        mutateRoute(el.dataset.routeTask, el.dataset.routeKey, el.value);
+    if (el.dataset.approvalTask)
+        mutateRoute(el.dataset.approvalTask, 'fallbackApproved', el.checked);
+});
+root.addEventListener('click', ev => {
+    const node = ev.target;
+    const button = node.closest('[data-action]');
+    if (!button)
+        return;
+    if (button instanceof HTMLButtonElement && button.disabled)
+        return;
+    const act = button.dataset.action;
+    const id = button.dataset.id || '';
+    if (act === 'backdrop-close') {
+        if (node === button)
+            closeModal();
+        return;
+    }
+    if (act === 'navigate') {
+        navigate(button.dataset.page);
+        return;
+    }
+    if (act === 'category') {
+        ui.category = button.dataset.category;
+        ui.page = 'learn';
+        if (state.mode === 'en')
+            state.mode = 'zh';
+        const relevant = all().filter(c => ui.category === 'all' || c.category === ui.category);
+        if (relevant.length && !relevant.some(c => c.id === state.currentId))
+            select(relevant[0].id);
+        else
+            render();
+        return;
+    }
+    if (act === 'select-card' || act === 'preview-card') {
+        ui.page = 'learn';
+        select(id);
+        if (act === 'preview-card')
+            window.scrollTo(0, 0);
+        return;
+    }
+    if (act === 'mode') {
+        changeMode(button.dataset.mode);
+        return;
+    }
+    if (act === 'next') {
+        const list = all().filter(c => (ui.category === 'all' || c.category === ui.category) && (state.mode !== 'place' || c.place));
+        if (list.length) {
+            const i = list.findIndex(c => c.id === state.currentId);
+            select(list[(i + 1) % list.length].id);
+        }
+        return;
+    }
+    if (act === 'play') {
+        play();
+        return;
+    }
+    if (act === 'replay') {
+        play(true);
+        return;
+    }
+    if (act === 'frames') {
+        ui.showFrames = !ui.showFrames;
+        render();
+        return;
+    }
+    if (act === 'frame') {
+        stop();
+        ui.t = Number(button.dataset.t);
+        render();
+        return;
+    }
+    if (act === 'compare-frame') {
+        ui.compareT = Number(button.dataset.t);
+        render();
+        return;
+    }
+    if (act === 'xray') {
+        ui.xray = !ui.xray;
+        render();
+        return;
+    }
+    if (act === 'variant') {
+        ui.variant++;
+        ui.result = null;
+        render();
+        toast(['parallel', 'perpendicular'].includes(current().scene) ? '图形已旋转；两条线的关系保持不变。' : '已切换本地场景变式；教学目标不变。');
+        return;
+    }
+    if (act === 'hint') {
+        const key = (0, render_1.revealKey)(state.currentId, state.mode);
+        if (!state.hinted.includes(key))
+            state.hinted.push(key);
+        ui.showHint = !ui.showHint;
+        save();
+        render();
+        return;
+    }
+    if (act === 'reveal') {
+        const key = (0, render_1.revealKey)(state.currentId, state.mode);
+        if (!state.revealed.includes(key))
+            state.revealed.push(key);
+        ui.showTranslation = !ui.showTranslation;
+        save();
+        render();
+        return;
+    }
+    if (act === 'compare') {
+        const key = (0, render_1.revealKey)(state.currentId, state.mode);
+        if (!state.hinted.includes(key))
+            state.hinted.push(key);
+        save();
+        openModal('compare');
+        return;
+    }
+    if (act === 'reduce') {
+        state.reduceMotion = !state.reduceMotion;
+        stop();
+        ui.showFrames = state.reduceMotion;
+        save();
+        render();
+        return;
+    }
+    if (act === 'check-place') {
+        void submit();
+        return;
+    }
+    if (act === 'place-reset') {
+        ui.position = { x: 140, y: 290 };
+        ui.result = null;
+        render();
+        return;
+    }
+    if (act === 'move') {
+        movePoint(button.dataset.dir || '');
+        return;
+    }
+    if (act === 'request-unknown') {
+        addRequest(ui.unknown);
+        return;
+    }
+    if (act === 'request-sample') {
+        addRequest(button.dataset.term || '');
+        return;
+    }
+    if (act === 'library-tab') {
+        ui.libraryTab = button.dataset.tab;
+        render();
+        return;
+    }
+    if (act === 'generate-template') {
+        const j = state.jobs.find(x => x.id === id);
+        if (!j || j.status !== 'requested' || !j.templateKey)
+            return;
+        j.status = 'preparing';
+        j.readyAt = Date.now() + 1500;
+        save();
+        render();
+        return;
+    }
+    if (act === 'review-job') {
+        openModal('review', id);
+        return;
+    }
+    if (act === 'approve-job') {
+        const j = state.jobs.find(x => x.id === id);
+        if (!j || j.status !== 'review' || !j.templateKey)
+            return;
+        j.status = 'published';
+        state.withdrawn = state.withdrawn.filter(x => x !== content_1.extensionCards[j.templateKey].id);
+        ui.modal = null;
+        save();
+        render();
+        toast('已发布到本地演示词库。现在再次搜索即可直接复用。');
+        return;
+    }
+    if (act === 'reject-job') {
+        const j = state.jobs.find(x => x.id === id);
+        if (!j)
+            return;
+        j.status = 'rejected';
+        ui.modal = null;
+        save();
+        render();
+        toast('已拒绝这个本地草稿 / 需求。');
+        return;
+    }
+    if (act === 'withdraw') {
+        const ext = state.jobs.find(j => j.templateKey && content_1.extensionCards[j.templateKey].id === id && j.status === 'published');
+        if (ext)
+            ext.status = 'withdrawn';
+        else if (!state.withdrawn.includes(id))
+            state.withdrawn.push(id);
+        if (id === state.currentId && all().length)
+            state.currentId = all()[0].id;
+        save();
+        render();
+        toast('词卡已从演示发布库撤回，历史记录不变。');
+        return;
+    }
+    if (act === 'restore') {
+        state.withdrawn = state.withdrawn.filter(x => x !== id);
+        const j = state.jobs.find(j => j.templateKey && content_1.extensionCards[j.templateKey].id === id && j.status === 'withdrawn');
+        if (j)
+            j.status = 'published';
+        save();
+        render();
+        toast('已恢复到本地演示发布库。');
+        return;
+    }
+    if (act === 'toggle-mock') {
+        state.mockEnabled = !state.mockEnabled;
+        save();
+        render();
+        toast(state.mockEnabled ? '本地模拟已开启，仍然没有任何真实 AI 调用。' : '模拟已关闭，词库和本地规则练习继续可用。');
+        return;
+    }
+    if (act === 'probe') {
+        void probe();
+        return;
+    }
+    if (act === 'rollback') {
+        const task = button.dataset.task, previous = ui.lastRoutes[task];
+        if (!previous)
+            return;
+        state.routes[task] = { ...previous, revision: state.routes[task].revision + 1 };
+        delete ui.lastRoutes[task];
+        save();
+        render();
+        toast('已用新版本恢复上一份目标配置，不改写历史模拟结果。');
+        return;
+    }
+    if (act === 'about') {
+        openModal('about');
+        return;
+    }
+    if (act === 'reset') {
+        openModal('reset');
+        return;
+    }
+    if (act === 'close-modal') {
+        closeModal();
+        return;
+    }
+    if (act === 'confirm-reset') {
+        submitSeq++;
+        probeSeq++;
+        stop();
+        state = (0, store_1.defaultState)();
+        Object.assign(ui, (0, ui_1.newUi)());
+        markVisited();
+        save();
+        render();
+        toast('演示数据已重置，原计划文件和云端数据没有变化。');
+        return;
+    }
+    if (act === 'export') {
+        exportData();
+        return;
+    }
+});
+root.addEventListener('keydown', ev => {
+    const target = ev.target;
+    if (target.id === 'answerInput' && ev.key === 'Enter' && !ev.shiftKey) {
+        ev.preventDefault();
+        void submit();
+        return;
+    }
+    if (target.matches('.scene-svg.interactive')) {
+        const dirs = { ArrowUp: 'up', ArrowDown: 'down', ArrowLeft: 'left', ArrowRight: 'right' };
+        if (dirs[ev.key]) {
+            ev.preventDefault();
+            movePoint(dirs[ev.key]);
+            return;
+        }
+        if (ev.key === 'Enter') {
+            ev.preventDefault();
+            void submit();
+            return;
+        }
+    }
+    if (ui.modal) {
+        if (ev.key === 'Escape') {
+            ev.preventDefault();
+            closeModal();
+            return;
+        }
+        if (ev.key === 'Tab') {
+            const els = Array.from(document.querySelectorAll('.modal button:not([disabled]),.modal input,.modal select,.modal [tabindex="0"]'));
+            if (!els.length)
+                return;
+            const first = els[0], last = els[els.length - 1];
+            if (ev.shiftKey && document.activeElement === first) {
+                ev.preventDefault();
+                last.focus();
+            }
+            else if (!ev.shiftKey && document.activeElement === last) {
+                ev.preventDefault();
+                first.focus();
+            }
+        }
+    }
+});
+let pointerId = null;
+function pointFromEvent(ev) {
+    const svg = document.querySelector('#sceneHost svg');
+    if (!svg)
+        return null;
+    const matrix = svg.getScreenCTM();
+    if (!matrix)
+        return null;
+    const p = new DOMPoint(ev.clientX, ev.clientY).matrixTransform(matrix.inverse());
+    return (0, geometry_1.snapPoint)(current().scene, { x: p.x, y: p.y });
+}
+root.addEventListener('pointerdown', ev => {
+    if (state.mode !== 'place' || ui.page !== 'learn' || ui.modal)
+        return;
+    const target = ev.target;
+    if (!target.closest('#sceneHost'))
+        return;
+    const p = pointFromEvent(ev);
+    if (!p)
+        return;
+    pointerId = ev.pointerId;
+    ui.position = p;
+    ui.result = null;
+    ev.preventDefault();
+    paintScene();
+    document.getElementById('feedbackSlot').innerHTML = '';
+    document.querySelector('#sceneHost svg')?.focus({ preventScroll: true });
+});
+window.addEventListener('pointermove', ev => {
+    if (pointerId !== ev.pointerId || state.mode !== 'place')
+        return;
+    const p = pointFromEvent(ev);
+    if (p) {
+        ui.position = p;
+        paintScene();
+    }
+});
+window.addEventListener('pointerup', ev => { if (pointerId === ev.pointerId)
+    pointerId = null; });
+window.addEventListener('pointercancel', () => { pointerId = null; });
+window.addEventListener('blur', () => { pointerId = null; stop(); });
+document.addEventListener('visibilitychange', () => { if (document.hidden) {
+    stop();
+} });
+// Completing jobs is deterministic and resumable from readyAt after reload.
+window.setInterval(() => { if ((0, store_1.advanceJobs)(state)) {
+    save();
+    if (ui.page === 'library')
+        render();
+} }, 250);
+// Safe fallback for stale or withdrawn selections in persisted demo state.
+if (!all().some(c => c.id === state.currentId))
+    state.currentId = all()[0]?.id || content_1.cards[12].id;
+if (state.mode === 'place' && !current().place)
+    state.mode = 'zh';
+(0, store_1.advanceJobs)(state);
+markVisited();
+save();
+render();
+
+},
+"content":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.extensionCards = exports.byId = exports.cards = exports.categories = void 0;
+exports.normalizedWord = normalizedWord;
+exports.lookup = lookup;
+exports.categories = {
+    position: { label: '基本位置', en: 'POSITION', subtitle: '观察物体在哪里' },
+    motion: { label: '移动路径', en: 'MOVEMENT', subtitle: '观察它从哪里到哪里' },
+    geometry: { label: '相对位置与几何', en: 'RELATIONSHIPS', subtitle: '找到位置与线条的关系' }
+};
+function card(s) { return { ...s, revision: 1, acceptedEn: [s.word, ...(s.acceptedEn || [])] }; }
+exports.cards = [
+    card({ id: 'in', word: 'in', zh: '在……里面', category: 'position', scene: 'in', place: true, contrast: 'into',
+        example: 'The ball is in the box.', exampleZh: '球在盒子里。', hint: '注意球相对于盒子边界的位置。', note: '这里描述静态位置。into 描述进入的过程。', description: 'A ball rests within the opening of a box. It is not moving.',
+        acceptedZh: ['在里面', '里面', '在盒子里', '球在盒子里', '在内部', '在内'], acceptedEn: ['inside', 'inside the box', 'in the box', 'the ball is in the box'], wrongZh: ['外面', '在外面', '在盒子外面', '在上面'] }),
+    card({ id: 'on', word: 'on', zh: '在……上面（接触并被支撑）', category: 'position', scene: 'on', place: true, contrast: 'above',
+        example: 'The ball is on the table.', exampleZh: '球在桌子上。', hint: '看看球有没有接触桌面。', note: '这张图强调接触和支撑；above 只表达较高的位置。', description: 'The bottom of a ball touches the tabletop and the table supports it.',
+        acceptedZh: ['在上面', '上面', '在桌子上', '在桌面上', '球在桌子上', '在上', '放在上面'], acceptedEn: ['on top of', 'on the table', 'on top of the table', 'the ball is on the table'], wrongZh: ['在下面', '在桌子下面', '在里面'] }),
+    card({ id: 'under', word: 'under', zh: '在……下面', category: 'position', scene: 'under', place: true, contrast: 'below',
+        example: 'The ball is under the table.', exampleZh: '球在桌子下面。', hint: '先找到球，再比较它和桌面的位置。', note: '当前画面中，under、below、underneath 的合适表达都可以成立，不强制唯一近义词。', description: 'A ball rests between the table legs, lower than the tabletop.',
+        acceptedZh: ['在下面', '下面', '在桌子下面', '球在桌子下面', '在底下', '底下', '在下方', '下方', '在桌子底下'], acceptedEn: ['below', 'underneath', 'beneath', 'under the table', 'the ball is under the table'], wrongZh: ['在上面', '在桌子上', '在桌子上面', '在旁边', '桌子在球下面', '桌子在球的下面'] }),
+    card({ id: 'above', word: 'above', zh: '在……上方', category: 'position', scene: 'above', place: true, contrast: 'on',
+        example: 'The ball is above the table.', exampleZh: '球在桌子上方。', hint: '看看两者的高低，以及是否接触。', note: '此图无接触；这只是用于比较的例子，不是 above 在所有句子中的附加限制。', description: 'A ball is suspended at a higher level than a table, with a visible gap.',
+        acceptedZh: ['在上方', '上方', '在上面', '上面', '在桌子上方', '球在桌子上方', '高于', '比桌子高'], acceptedEn: ['over', 'above the table', 'over the table', 'the ball is above the table'], wrongZh: ['在下方', '在下面', '在桌子下面'] }),
+    card({ id: 'below', word: 'below', zh: '在……下方；低于', category: 'position', scene: 'below', place: true, contrast: 'under',
+        example: 'The ball is below the shelf.', exampleZh: '球的位置低于架子。', hint: '比较球和架子的高度，不必在同一竖线上。', note: 'below 表示位置较低，不要求正下方。图中用水平错位强调这一点。', description: 'A ball is lower than a shelf, offset to its right.',
+        acceptedZh: ['在下面', '下面', '在下方', '下方', '低于', '比架子低', '在架子下方', '球在架子下方'], acceptedEn: ['below the shelf', 'lower than', 'lower than the shelf', 'the ball is below the shelf'], wrongZh: ['在上方', '上方', '在上面', '在架子上'] }),
+    card({ id: 'next-to', word: 'next to', zh: '在……旁边；紧挨着', category: 'position', scene: 'next', place: true, contrast: 'left',
+        example: 'The ball is next to the box.', exampleZh: '球在盒子旁边。', hint: '注意球与盒子之间的距离。', note: '当前场景中 beside 和 next to 都是合理表达。', description: 'A ball rests immediately beside a box on the same surface.',
+        acceptedZh: ['在旁边', '旁边', '在盒子旁边', '球在盒子旁边', '紧挨着', '挨着', '在一旁', '紧靠'], acceptedEn: ['beside', 'by', 'beside the box', 'next to the box', 'the ball is next to the box'], wrongZh: ['在里面', '在上面', '在下面', '离得很远'] }),
+    card({ id: 'in-front-of', word: 'in front of', zh: '在……前面', category: 'position', scene: 'front', contrast: 'behind',
+        example: 'The ball is in front of the box.', exampleZh: '球在盒子前面。', hint: '谁挡住了谁？从观察者的方向判断。', note: '通过遮挡和地面透视表达前后，不把高低当成前后。', description: 'The ball is closer to the viewer and overlaps the lower face of the box.',
+        acceptedZh: ['在前面', '前面', '在盒子前面', '球在盒子前面', '在前方', '前方'], acceptedEn: ['in front of the box', 'the ball is in front of the box'], wrongZh: ['在后面', '后面', '在盒子后面'] }),
+    card({ id: 'behind', word: 'behind', zh: '在……后面', category: 'position', scene: 'behind', contrast: 'in-front-of',
+        example: 'The ball is behind the box.', exampleZh: '球在盒子后面。', hint: '看被盒子遮住的球，以及露出的部分。', note: '球有一部分被盒子遮住；不要用画面中的上下位置代替前后关系。', description: 'The box obscures most of a ball; part of the ball is visible beyond its right edge.',
+        acceptedZh: ['在后面', '后面', '在盒子后面', '球在盒子后面', '在后方', '后方'], acceptedEn: ['behind the box', 'the ball is behind the box'], wrongZh: ['在前面', '前面', '在盒子前面'] }),
+    card({ id: 'into', word: 'into', zh: '进入……；到……里面', category: 'motion', scene: 'into', motion: true, contrast: 'out-of',
+        example: 'The ball goes into the box.', exampleZh: '球进入盒子。', hint: '分别看开始和结束时，球在哪里。', note: '轨迹从盒子外经过顶部开口，终点在盒子内部。', description: 'A ball starts above an open box, moves through the opening, and finishes inside.',
+        acceptedZh: ['进入', '进去', '进入里面', '进入盒子', '球进入盒子', '到里面', '到里面去', '进到里面', '放进去'], acceptedEn: ['into the box', 'goes into', 'enters', 'entering', 'the ball goes into the box'], closeZh: ['在里面', '在盒子里', '里面'], wrongZh: ['出来', '离开', '从里面出来', '移出'] }),
+    card({ id: 'out-of', word: 'out of', zh: '从……里面出来', category: 'motion', scene: 'out', motion: true, contrast: 'into',
+        example: 'The ball comes out of the box.', exampleZh: '球从盒子里出来。', hint: '看起点与终点，球是否还留在盒子里。', note: '与 into 方向相反；outside 是外部位置，不一定有离开的过程。', description: 'A ball starts inside a box, moves through the top opening, and ends outside.',
+        acceptedZh: ['出来', '从里面出来', '从盒子里出来', '球从盒子里出来', '移出', '离开里面', '从内部出来', '出去'], acceptedEn: ['out of the box', 'comes out of', 'exits', 'the ball comes out of the box'], closeZh: ['在外面', '外面'], wrongZh: ['进入', '进去', '到里面'] }),
+    card({ id: 'onto', word: 'onto', zh: '移动到……上面', category: 'motion', scene: 'onto', motion: true, contrast: 'off',
+        example: 'The ball moves onto the table.', exampleZh: '球移动到桌子上。', hint: '观察终点：它最后有没有接触桌面？', note: 'onto 表达位置改变到表面上；on 主要在本单元表示静态位置。', description: 'A ball moves from beside a table to rest on its top surface.',
+        acceptedZh: ['到上面', '移动到上面', '到桌子上', '移动到桌子上', '放到上面', '上到', '上去'], acceptedEn: ['onto the table', 'moves onto', 'the ball moves onto the table'], closeZh: ['在上面', '在桌子上'], wrongZh: ['从上面离开', '下来', '离开桌面'] }),
+    card({ id: 'off', word: 'off', zh: '离开……表面；从……上下来', category: 'motion', scene: 'off', motion: true, contrast: 'onto',
+        example: 'The ball moves off the table.', exampleZh: '球从桌子上离开。', hint: '看看它开始接触哪里，最后又在哪里。', note: '这里教表面分离的空间义项，不是“关闭”。', description: 'A ball starts on a table, moves beyond its edge, and ends lower on the ground.',
+        acceptedZh: ['从上面离开', '离开表面', '从桌子上下来', '离开桌面', '从上面下来', '下来', '掉下', '掉下来'], acceptedEn: ['off the table', 'moves off', 'the ball moves off the table'], closeZh: ['在下面'], wrongZh: ['移动到上面', '到桌子上', '上去'] }),
+    card({ id: 'through', word: 'through', zh: '穿过……内部', category: 'motion', scene: 'through', motion: true, contrast: 'across',
+        example: 'The ball goes through the tunnel.', exampleZh: '球穿过隧道。', hint: '它经过的是隧道内部，还是从外面绕过去？', note: '本题强调内部路径。只说“从一边到另一边”还没有说清经过哪里。', description: 'A ball enters one opening of a passage, travels inside it, and exits the other opening.',
+        acceptedZh: ['穿过', '穿过内部', '从内部穿过', '从里面穿过', '穿过隧道', '球穿过隧道', '从隧道里面穿过去', '从隧道里穿过', '贯穿'], acceptedEn: ['through the tunnel', 'passes through', 'goes through', 'the ball goes through the tunnel'], closeZh: ['从一边到另一边', '到另一边', '从一侧到另一侧'], wrongZh: ['旁边', '在旁边', '绕过', '在隧道旁边', '沿着'] }),
+    card({ id: 'across', word: 'across', zh: '横过；从一边到另一边', category: 'motion', scene: 'across', motion: true, contrast: 'through',
+        example: 'The ball moves across the road.', exampleZh: '球从道路一边移动到另一边。', hint: '它是在沿着道路走，还是横穿到对面？', note: '此图强调从道路的一侧到另一侧；不要教成所有 across 都是同一条水平直线。', description: 'A ball moves from one side of a vertical roadway to the opposite side.',
+        acceptedZh: ['横穿', '横过', '穿过', '从一边到另一边', '到对面', '横穿道路', '从道路一边到另一边', '球横穿道路'], acceptedEn: ['across the road', 'crossing', 'crosses the road', 'the ball moves across the road'], wrongZh: ['沿着', '沿道路', '在道路旁边', '绕着'] }),
+    card({ id: 'toward', word: 'toward', zh: '朝向……；向……靠近', category: 'motion', scene: 'toward', motion: true, contrast: 'away-from',
+        example: 'The ball moves toward the box.', exampleZh: '球朝盒子移动。', hint: '播放前后，球与盒子的距离怎样变化？', note: 'towards 是常见变体。朝向某物不要求最终抵达或接触。', description: 'A ball moves closer to a box but stops before touching it.',
+        acceptedZh: ['朝向', '朝着', '靠近', '向着', '向盒子靠近', '朝盒子移动', '球朝盒子移动', '向前靠近', '接近'], acceptedEn: ['towards', 'toward the box', 'towards the box', 'approaching', 'the ball moves toward the box'], wrongZh: ['远离', '离开', '越来越远'] }),
+    card({ id: 'away-from', word: 'away from', zh: '远离……；离……而去', category: 'motion', scene: 'away', motion: true, contrast: 'toward',
+        example: 'The ball moves away from the box.', exampleZh: '球向远离盒子的方向移动。', hint: '比较开始与结束时，两者之间的距离。', note: '此处是正在远离的运动；far from 可以只描述静态距离。', description: 'A ball moves farther away from a box while the box stays fixed.',
+        acceptedZh: ['远离', '离开', '离得越来越远', '远离盒子', '球远离盒子', '向远处移动', '越来越远'], acceptedEn: ['away', 'away from the box', 'moving away', 'the ball moves away from the box'], wrongZh: ['靠近', '朝着', '向着', '接近'] }),
+    card({ id: 'left', word: 'to the left of', zh: '在……左边', category: 'geometry', scene: 'left', place: true, contrast: 'right',
+        example: 'The ball is to the left of the box.', exampleZh: '球在盒子左边。', hint: '按你面对屏幕时的左右来判断。', note: '坐标系固定为观察者的左右，不随物体朝向切换。', description: 'From the viewer’s perspective, the ball is on the left side of the box.',
+        acceptedZh: ['在左边', '左边', '在左侧', '左侧', '在盒子左边', '球在盒子左边', '左'], acceptedEn: ['left', 'left of', 'to the left', 'on the left of', 'to the left of the box', 'the ball is to the left of the box'], wrongZh: ['右边', '在右边', '右侧', '盒子在球左边'] }),
+    card({ id: 'right', word: 'to the right of', zh: '在……右边', category: 'geometry', scene: 'right', place: true, contrast: 'left',
+        example: 'The ball is to the right of the box.', exampleZh: '球在盒子右边。', hint: '按观察者面对屏幕的方向判断。', note: '本单元只讨论 right 的空间义项，不是“正确”。', description: 'From the viewer’s perspective, the ball is on the right side of the box.',
+        acceptedZh: ['在右边', '右边', '在右侧', '右侧', '在盒子右边', '球在盒子右边', '右'], acceptedEn: ['right', 'right of', 'to the right', 'on the right of', 'to the right of the box', 'the ball is to the right of the box'], wrongZh: ['左边', '在左边', '左侧', '盒子在球右边'] }),
+    card({ id: 'between', word: 'between', zh: '在……之间', category: 'geometry', scene: 'between', place: true, contrast: 'among',
+        example: 'The ball is between the boxes.', exampleZh: '球在两个盒子之间。', hint: '先看两个分别指明的参照物，再看球。', note: '本图恰好有两个参照物，但 between 不限于所有情境中只能有两者。', description: 'A ball is positioned in the gap separating two distinct boxes.',
+        acceptedZh: ['在之间', '在中间', '在两者之间', '在两个盒子之间', '在盒子之间', '之间', '球在两个盒子之间', '中间'], acceptedEn: ['between the boxes', 'in between', 'in between the boxes', 'the ball is between the boxes'], wrongZh: ['在外面', '在盒子里', '在最左边'] }),
+    card({ id: 'among', word: 'among', zh: '在……之中（群体中）', category: 'geometry', scene: 'among', contrast: 'between',
+        example: 'The ball is among the blocks.', exampleZh: '球在一群积木之中。', hint: '把周围的积木看作一个整体。', note: '重点是处于群体之中，不机械地把 among 定义成“数量至少三个”。', description: 'A ball is surrounded by a loose group of blocks at different positions.',
+        acceptedZh: ['在之中', '在其中', '在一群之中', '在群体中', '在积木之中', '在中间', '被围在中间', '之中', '球在积木之中'], acceptedEn: ['amongst', 'among the blocks', 'amongst the blocks', 'the ball is among the blocks'], wrongZh: ['在外面', '远离', '在最前面'] }),
+    card({ id: 'horizontal', word: 'horizontal', zh: '水平的；横向的', category: 'geometry', scene: 'horizontal', contrast: 'vertical',
+        example: 'The line is horizontal.', exampleZh: '这条线是水平的。', hint: '观察这条线是否和画面的水平基准一致。', note: '这里相对于画面水平基准描述单条线的方向。', description: 'One straight line runs level from left to right.',
+        acceptedZh: ['水平', '水平的', '横向', '横向的', '横的', '横着', '水平线'], acceptedEn: ['level', 'a horizontal line', 'the line is horizontal'], wrongZh: ['竖直', '垂直', '竖的', '斜的'] }),
+    card({ id: 'vertical', word: 'vertical', zh: '竖直的；竖向的', category: 'geometry', scene: 'vertical', contrast: 'perpendicular',
+        example: 'The line is vertical.', exampleZh: '这条线是竖直的。', hint: '这是一条线的方向，还是两条线的关系？', note: 'vertical 描述竖向；perpendicular 描述两条线成直角，不等于一条线必须竖直。', description: 'One straight line runs straight up and down in the scene.',
+        acceptedZh: ['竖直', '竖直的', '竖向', '竖向的', '竖的', '垂直', '垂直的', '竖线'], acceptedEn: ['upright', 'a vertical line', 'the line is vertical'], wrongZh: ['水平', '横向', '平行'] }),
+    card({ id: 'parallel', word: 'parallel to', zh: '与……平行', category: 'geometry', scene: 'parallel', contrast: 'perpendicular',
+        example: 'The orange line is parallel to the green line.', exampleZh: '橙色线与绿色线平行。', hint: '比较两条线的方向和它们之间的间隔。', note: '可以旋转整个图形，平行关系依然保持。', description: 'Two straight lines point in the same direction and remain equally separated.',
+        acceptedZh: ['平行', '与平行', '互相平行', '两条线平行', '与另一条线平行'], acceptedEn: ['parallel', 'parallel lines', 'the lines are parallel'], wrongZh: ['垂直', '相交', '交叉', '成直角'] }),
+    card({ id: 'perpendicular', word: 'perpendicular to', zh: '与……垂直；成直角', category: 'geometry', scene: 'perpendicular', contrast: 'vertical',
+        example: 'The orange line is perpendicular to the green line.', exampleZh: '橙色线与绿色线互相垂直。', hint: '两条线相交形成什么角？换个角度再观察。', note: '整个图旋转后，两条线仍成直角；vertical 不是这一关系的同义词。', description: 'Two straight lines intersect at a right angle. A small corner marker shows that angle.',
+        acceptedZh: ['垂直', '互相垂直', '两条线垂直', '成直角', '直角', '与垂直'], acceptedEn: ['perpendicular', 'at right angles', 'perpendicular lines', 'the lines are perpendicular'], closeZh: ['相交', '交叉'], wrongZh: ['平行', '水平', '竖直'] })
+];
+const byId = (id, all = exports.cards) => all.find(c => c.id === id) || exports.cards[12];
+exports.byId = byId;
+exports.extensionCards = {
+    near: card({ id: 'ext-near', word: 'near', zh: '在……附近；靠近', category: 'position', scene: 'near', example: 'The ball is near the box.', exampleZh: '球在盒子附近。', hint: '观察两者之间的距离。', note: '这是预编的近距离模板，不是为任意新词生成的图片。', description: 'A ball rests a short distance from a box.', acceptedZh: ['附近', '在附近', '靠近', '在盒子附近'], acceptedEn: ['close to', 'near the box'] }),
+    'far from': card({ id: 'ext-far', word: 'far from', zh: '离……很远', category: 'position', scene: 'far', example: 'The ball is far from the box.', exampleZh: '球离盒子很远。', hint: '比较两个物体的距离。', note: '这里是静态距离，不是正在远离。', description: 'A ball rests far away from a box.', acceptedZh: ['很远', '离得很远', '远离', '离盒子很远'], acceptedEn: ['far away from', 'far from the box'] }),
+    beside: card({ ...exports.cards[5], id: 'ext-beside', word: 'beside', zh: '在……旁边', example: 'The ball is beside the box.', exampleZh: '球在盒子旁边。', acceptedEn: ['next to', 'beside the box'] }),
+    inside: card({ ...exports.cards[0], id: 'ext-inside', word: 'inside', zh: '在……内部', example: 'The ball is inside the box.', exampleZh: '球在盒子里面。', acceptedEn: ['in', 'inside the box'] }),
+    outside: card({ id: 'ext-outside', word: 'outside', zh: '在……外面', category: 'position', scene: 'outside', contrast: 'in', example: 'The ball is outside the box.', exampleZh: '球在盒子外面。', hint: '先看盒子的边界。', note: '静态位置，与 out of 的移动不同。', description: 'A stationary ball rests outside a box.', acceptedZh: ['外面', '在外面', '在盒子外面'], acceptedEn: ['outside the box'] }),
+};
+function normalizedWord(s) { return s.normalize('NFKC').trim().toLowerCase().replace(/\s+/g, ' '); }
+function lookup(q, all) {
+    const n = normalizedWord(q);
+    if (!n)
+        return all;
+    const canonical = all.filter(c => normalizedWord(c.word) === n);
+    if (canonical.length)
+        return canonical;
+    const exact = all.filter(c => c.acceptedEn.some(a => normalizedWord(a) === n));
+    if (exact.length)
+        return exact;
+    return all.filter(c => c.word.includes(n));
+}
+
+},
+"contracts":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.parseAttemptInput = parseAttemptInput;
+exports.publicCard = publicCard;
+/** Local DTO boundary for the demo. It is not production authentication. */
+function parseAttemptInput(value) {
+    if (!value || typeof value !== 'object' || Array.isArray(value))
+        throw Error('INVALID_REQUEST');
+    const v = value;
+    if (Object.keys(v).sort().join(',') !== 'answer,cardId,mode')
+        throw Error('UNEXPECTED_FIELDS');
+    if (typeof v.cardId !== 'string' || !/^[a-z0-9-]{1,80}$/.test(v.cardId))
+        throw Error('INVALID_CARD');
+    if (v.mode !== 'zh' && v.mode !== 'en' && v.mode !== 'place')
+        throw Error('INVALID_MODE');
+    if (typeof v.answer !== 'string' || ![...v.answer.trim()].length || [...v.answer].length > 200)
+        throw Error('INVALID_ANSWER');
+    return { cardId: v.cardId, mode: v.mode, answer: v.answer.normalize('NFC') };
+}
+/** Suitable for a future server response; internal seed files remain visible locally. */
+function publicCard(card, mode) {
+    return { id: card.id, revision: card.revision, category: card.category, motion: !!card.motion, mode,
+        title: mode === 'en' ? 'What’s the relationship?' : mode === 'place' ? card.example.replace(/^The ball is /, 'Put the ball ') : card.word,
+        description: card.description, rendererVersion: 'scene-demo-v1' };
+}
+
+},
+"geometry":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cross = exports.dot = exports.clamp = void 0;
+exports.progress = progress;
+exports.samplePosition = samplePosition;
+exports.placeValid = placeValid;
+exports.snapPoint = snapPoint;
+exports.lineVectors = lineVectors;
+const clamp = (n, min, max) => Math.max(min, Math.min(max, n));
+exports.clamp = clamp;
+function progress(t) { const x = (0, exports.clamp)((t - 0.12) / 0.76, 0, 1); return x * x * (3 - 2 * x); }
+function samplePosition(scene, t, variant = 0) {
+    const u = progress(t);
+    switch (scene) {
+        case 'in': return { x: 360, y: 237 };
+        case 'into': return { x: 360, y: 75 + 162 * u };
+        case 'out': return { x: 360, y: 237 - 162 * u };
+        case 'on': return { x: 360, y: 181 };
+        case 'under': return { x: 360 + (variant % 2 ? 25 : 0), y: 286 };
+        case 'above': return { x: 360 + (variant % 2 ? 50 : 0), y: 103 };
+        case 'below': return { x: 510, y: 290 };
+        case 'next': return { x: 490, y: 271 };
+        case 'near': return { x: 515, y: 271 };
+        case 'far': return { x: 140, y: 271 };
+        case 'outside': return { x: 200, y: 280 };
+        case 'front': return { x: 410, y: 294 };
+        case 'behind': return { x: 437, y: 250 };
+        case 'left': return { x: 180, y: 267 };
+        case 'right': return { x: 550, y: 267 };
+        case 'between': return { x: 360, y: 263 };
+        case 'among': return { x: 360, y: 249 };
+        case 'onto': return { x: 150 + 210 * u, y: 280 - 99 * u - 100 * Math.sin(Math.PI * u) };
+        case 'off': return { x: 360 + 210 * u, y: 181 + 105 * u - 25 * Math.sin(Math.PI * u) };
+        case 'through': return { x: 135 + 465 * u, y: 254 };
+        case 'across': return { x: 155 + 400 * u, y: 243 };
+        case 'toward': return { x: 135 + 265 * u, y: 271 };
+        case 'away': return { x: 400 - 265 * u, y: 271 };
+        default: return { x: 360, y: 235 };
+    }
+}
+function placeValid(scene, p) {
+    if (!Number.isFinite(p.x) || !Number.isFinite(p.y))
+        return false;
+    switch (scene) {
+        case 'in': return p.x >= 333 && p.x <= 391 && p.y >= 213 && p.y <= 244;
+        case 'on': return p.x >= 287 && p.x <= 454 && Math.abs(p.y - 181) <= 8;
+        case 'under': return p.x >= 300 && p.x <= 444 && p.y >= 253 && p.y <= 298;
+        case 'above': return p.x >= 272 && p.x <= 475 && p.y >= 65 && p.y <= 150;
+        case 'below': return p.y >= 258 && p.y <= 320 && p.x >= 120 && p.x <= 625;
+        case 'next': return (p.x >= 465 && p.x <= 517 || p.x >= 237 && p.x <= 279) && p.y >= 248 && p.y <= 288;
+        case 'left': return p.x >= 86 && p.x <= 260 && p.y >= 174 && p.y <= 298;
+        case 'right': return p.x >= 488 && p.x <= 644 && p.y >= 174 && p.y <= 298;
+        case 'between': return p.x >= 275 && p.x <= 439 && p.y >= 240 && p.y <= 290;
+        default: return false;
+    }
+}
+function snapPoint(scene, p) {
+    const q = { x: (0, exports.clamp)(p.x, 45, 675), y: (0, exports.clamp)(p.y, 50, 325) };
+    if (scene === 'on' && q.x >= 285 && q.x <= 456 && Math.abs(q.y - 181) <= 20)
+        q.y = 181;
+    return q;
+}
+function lineVectors(scene, variant = 0) {
+    const a = (variant % 2 ? Math.PI / 5 : 0);
+    const rotate = (p) => ({ x: p.x * Math.cos(a) - p.y * Math.sin(a), y: p.x * Math.sin(a) + p.y * Math.cos(a) });
+    if (scene === 'parallel')
+        return [rotate({ x: 220, y: -85 }), rotate({ x: 220, y: -85 })];
+    if (scene === 'perpendicular')
+        return [rotate({ x: 230, y: 0 }), rotate({ x: 0, y: 220 })];
+    return scene === 'horizontal' ? [{ x: 300, y: 0 }] : [{ x: 0, y: 200 }];
+}
+const dot = (a, b) => a.x * b.x + a.y * b.y;
+exports.dot = dot;
+const cross = (a, b) => a.x * b.y - a.y * b.x;
+exports.cross = cross;
+
+},
+"icons":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.logo = void 0;
+exports.icon = icon;
+const paths = {
+    book: '<path d="M4 4h5a3 3 0 0 1 3 3v14a4 4 0 0 0-4-3H4z"/><path d="M20 4h-5a3 3 0 0 0-3 3v14a4 4 0 0 1 4-3h4z"/>',
+    layers: '<path d="m12 3 10 6-10 6L2 9z"/><path d="m3 13 9 5 9-5M3 17l9 5 9-5"/>',
+    sliders: '<path d="M4 6h7m4 0h5M4 12h2m4 0h10M4 18h10m4 0h2"/><circle cx="13" cy="6" r="2"/><circle cx="8" cy="12" r="2"/><circle cx="16" cy="18" r="2"/>',
+    chart: '<path d="M4 4v16h16M8 15v-4m5 4V7m5 8v-6"/>',
+    search: '<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',
+    play: '<path d="m8 4 12 8-12 8z"/>', pause: '<path d="M8 4v16M16 4v16"/>',
+    restart: '<path d="M3 11a9 9 0 1 1 3 8M3 4v7h7"/>',
+    arrow: '<path d="M4 12h16m-6-6 6 6-6 6"/>', chevron: '<path d="m9 5 7 7-7 7"/>', chevronLeft: '<path d="m15 5-7 7 7 7"/>',
+    check: '<path d="m5 12 4 4L19 6"/>', cross: '<path d="m6 6 12 12M18 6 6 18"/>',
+    eye: '<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12"/><circle cx="12" cy="12" r="3"/>',
+    hidden: '<path d="m3 3 18 18M9 5.4c1-.3 2-.4 3-.4 6 0 10 7 10 7a20 20 0 0 1-3 3.5M6 6.5A20 20 0 0 0 2 12s4 7 10 7c2 0 4-.8 5-1.5M10 10a3 3 0 0 0 4 4"/>',
+    bulb: '<path d="M9 18h6m-5 3h4M8 13a6 6 0 1 1 8 0c-1 1-1 2-1 3H9c0-1 0-2-1-3"/>',
+    move: '<path d="M12 3v18M3 12h18M9 6l3-3 3 3M6 9l-3 3 3 3m9 3-3 3-3-3m9-9 3 3-3 3"/>',
+    spark: '<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5zM20 2v4m-2-2h4"/>',
+    info: '<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7v.3"/>',
+    clock: '<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>',
+    shuffle: '<path d="M3 6h3c4 0 8 12 12 12h3m-4-4 4 4-4 4M3 18h3c1 0 2-1 3-2m4-8c2-2 3-2 5-2h3m-4-4 4 4-4 4"/>',
+    plus: '<path d="M12 4v16M4 12h16"/>', download: '<path d="M12 3v12m-5-5 5 5 5-5M4 16v5h16v-5"/>',
+    shield: '<path d="m12 2 9 4v6c0 5-9 10-9 10S3 17 3 12V6z"/><path d="m8 12 3 3 5-6"/>',
+    moon: '<path d="M20 14a9 9 0 0 1-10-11A9 9 0 1 0 20 14"/>',
+    flag: '<path d="M5 22V3c5-4 9 4 14 0v11c-5 4-9-4-14 0"/>',
+    folder: '<path d="M3 7V4h6l2 3h10v13H3z"/>',
+    link: '<path d="m9 15 6-6m-7 8-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 8a4 4 0 0 0 6 0l4-4a4 4 0 0 0-6-6l-1 1"/>',
+    grid: '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>',
+    user: '<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',
+    lock: '<rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4"/>',
+    arrowUp: '<path d="M12 20V4m-6 6 6-6 6 6"/>', arrowDown: '<path d="M12 4v16m-6-6 6 6 6-6"/>',
+};
+function icon(name, cls = '') { return `<svg class="icon ${cls}" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name] || paths.spark}</svg>`; }
+exports.logo = `<svg viewBox="0 0 42 42" fill="none" aria-hidden="true"><path d="m21 4 15 9v17l-15 9-15-9V13z" fill="#167a68"/><path d="m21 4 15 9-15 9L6 13z" fill="#50baa4"/><path d="M21 22v17l15-9V13z" fill="#0f5e53"/><path d="m21 13 7 4-7 4-7-4z" fill="#d1f2e6"/><circle cx="32" cy="8" r="6" fill="#ef9971" stroke="#fff" stroke-width="2"/></svg>`;
+
+},
+"mock":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.profileNames = void 0;
+exports.runMock = runMock;
+const rules_1 = require("./rules");
+exports.profileNames = { deepseek: 'DeepSeek Flash', qwen: 'Cloudflare Qwen' };
+async function runMock(input) {
+    const r = { ...input.route };
+    const f = input.fault;
+    const started = Date.now();
+    await new Promise(resolve => setTimeout(resolve, input.delay ?? 720));
+    let profile = r.primary, calls = 1, fallback = false;
+    const failure = (reason, feedback) => ({ result: { status: 'not_evaluated', verdict: null, feedback, source: 'mock', reason, profile: exports.profileNames[profile], routeRevision: r.revision }, log: { id: 'mock-' + started.toString(36), task: input.task, profile: exports.profileNames[profile], revision: r.revision, status: reason, calls, fault: f, at: Date.now() } });
+    if (f === 'budget') {
+        calls = 0;
+        return failure('BUDGET_BLOCKED', '演示预算已到上限，没有发起模拟判答。这次不记为答错。');
+    }
+    if (f === 'timeout')
+        return failure('TIMEOUT', '模拟超时：自动判断未完成。这次不记为答错，也没有继续调用备用模型。');
+    if (['rate_limit', 'invalid_json', 'unapproved'].includes(f)) {
+        if (f === 'unapproved' || !r.fallbackApproved)
+            return failure('FALLBACK_BLOCKED', '模拟主模型失败；备用模型尚未获得演示批准，已停止回退。这次不记为答错。');
+        profile = r.secondary;
+        calls = 2;
+        fallback = true;
+    }
+    let decision = (0, rules_1.judgeRule)(input.card, input.mode, input.answer);
+    if (!decision && input.card.id === 'through' && ['我觉得是从内部经过', '从通道内部经过'].includes((0, rules_1.normalizeAnswer)(input.answer)))
+        decision = { verdict: 'correct', reason: 'FIXTURE_MATCH', feedback: '模拟样例匹配：你表达了“经过内部”的意思。' };
+    if (!decision)
+        decision = { verdict: 'uncertain', reason: 'MOCK_NO_FIXTURE', feedback: '这个自由回答不在演示样例中，无法可靠判断。请换一种表达，或请老师确认。' };
+    if (input.task !== 'grade')
+        decision = { verdict: 'correct', reason: 'MOCK_FIXTURE', feedback: input.task === 'scene' ? '已返回白名单场景配置样例；没有生成图片或执行模型代码。' : '已返回预编的释义样例；没有调用语言模型。' };
+    return { result: { status: 'evaluated', verdict: decision.verdict, reason: decision.reason, feedback: decision.feedback, source: 'mock', profile: exports.profileNames[profile], routeRevision: r.revision, fallback }, log: { id: 'mock-' + started.toString(36), task: input.task, profile: exports.profileNames[profile], revision: r.revision, status: fallback ? 'FALLBACK_OK' : 'OK', calls, fault: f, at: Date.now() } };
+}
+
+},
+"render":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.taskNames = exports.revealKey = void 0;
+exports.renderApp = renderApp;
+exports.renderLearning = renderLearning;
+exports.phase = phase;
+exports.renderFeedback = renderFeedback;
+exports.renderShelf = renderShelf;
+const content_1 = require("./content");
+const store_1 = require("./store");
+const icons_1 = require("./icons");
+const scene_1 = require("./scene");
+const mock_1 = require("./mock");
+const revealKey = (id, mode) => id + '|' + mode;
+exports.revealKey = revealKey;
+exports.taskNames = { grade: '学习判答', explain: '词义解释', scene: '场景规划' };
+const modeNames = { zh: '猜中文', en: '猜英文', place: '摆一摆' };
+const pageNames = { learn: '学习空间', library: '教学资料库', settings: '模型设置', records: '练习记录' };
+const navIcons = { learn: 'book', library: 'layers', settings: 'sliders', records: 'chart' };
+const statusNames = { requested: '待准备', preparing: '准备中', review: '待审核', published: '已发布', rejected: '已拒绝', withdrawn: '已撤回' };
+function current(s) { return (0, content_1.byId)(s.currentId, (0, store_1.published)(s)); }
+function nav(s, u, mobile = false) {
+    const pending = s.jobs.filter(j => ['requested', 'preparing', 'review'].includes(j.status)).length;
+    return ['learn', 'library', 'settings', 'records'].map(p => `<button type="button" class="${mobile ? '' : 'nav-item '}${u.page === p ? 'active' : ''}" data-action="navigate" data-page="${p}" ${u.page === p ? 'aria-current="page"' : ''}>${(0, icons_1.icon)(navIcons[p])}<span>${mobile ? { learn: '学习', library: '资料库', settings: '模型', records: '记录' }[p] : pageNames[p]}</span>${!mobile && p === 'library' && pending ? `<span class="count">${pending}</span>` : ''}</button>`).join('');
+}
+function heading(title, sub, eyebrow, steps = false) {
+    return `<div class="page-heading"><div><div class="eyebrow">${eyebrow}</div><h1>${title}</h1><p class="heading-description">${sub}</p></div>${steps ? '<div class="steps"><span class="active"><b>01</b> 观察</span>—<span><b>02</b> 猜测</span>—<span><b>03</b> 理解</span></div>' : ''}</div>`;
+}
+function footer(s, u) {
+    return `<footer class="footer"><span>SPATIAL LAB <span aria-hidden="true">·</span> 学习，在看见的那一刻发生。</span><div class="footer-links"><button data-action="reduce" aria-pressed="${s.reduceMotion}">${s.reduceMotion ? '恢复动态播放' : '减少动态效果'}</button><button data-action="about">关于演示</button></div></footer>${!u.storageOk ? '<div class="storage-warning">浏览器未允许本地存储：当前会话可用，刷新后可能丢失演示记录。</div>' : ''}`;
+}
+function renderApp(s, u) {
+    const all = (0, store_1.published)(s);
+    return `<div class="app-shell"><aside class="sidebar"><div class="brand">${icons_1.logo}<div><div class="brand-name">Spatial Lab<span style="color:#78a36c">.</span></div><div class="brand-cn">空间词汇实验室</div></div></div><div class="nav-group-label">WORKSPACE</div><nav class="main-nav" aria-label="主导航">${nav(s, u)}</nav><div class="sidebar-divider"></div><div class="nav-group-label">YOUR EXPLORATION</div><nav class="category-nav" aria-label="词汇分类">${Object.entries(content_1.categories).map(([key, v]) => `<button class="category-item ${u.page === 'learn' && u.category === key ? 'active' : ''}" data-action="category" data-category="${key}"><i class="dot ${key}"></i>${v.label}<span>${all.filter(c => c.category === key).length.toString().padStart(2, '0')}</span></button>`).join('')}</nav><div class="sidebar-bottom"><div class="offline-note"><div class="offline-note-title">${(0, icons_1.icon)('shield', 'small')} 专注于理解</div><p>所有画面由本地模板呈现。<br>无需账号，不调用真实 AI。</p></div><div class="profile"><div class="avatar">SVT</div><div><strong>探索者 · 演示访客</strong><small>本地学习空间</small></div></div></div></aside><div class="main-shell"><header class="topbar"><div class="breadcrumb">SVT <span>/</span> 视觉词汇 <span>/</span><strong>${pageNames[u.page]}</strong></div><div class="mobile-brand">${icons_1.logo}Spatial Lab.</div><div class="top-actions"><span class="demo-badge">本地演示 · 无 AI 调用</span><button class="text-link" data-action="about" aria-label="使用指南">${(0, icons_1.icon)('info', 'small')}使用指南</button></div></header><main id="main" class="content" tabindex="-1">${u.page === 'learn' ? renderLearning(s, u) : u.page === 'library' ? renderLibrary(s, u) : u.page === 'settings' ? renderSettings(s, u) : renderRecords(s)}${footer(s, u)}</main></div><nav class="mobile-nav" aria-label="移动端主导航">${nav(s, u, true)}</nav></div>${u.toast ? `<div class="toast" role="status">${(0, icons_1.icon)('check')}<span>${(0, scene_1.escapeHtml)(u.toast)}</span></div>` : ''}${renderModal(s, u)}`;
+}
+function titleFor(c, mode) {
+    if (mode === 'en')
+        return 'What’s the relationship?';
+    if (mode === 'place')
+        return c.example.replace(/^The ball is /, 'Put the ball ');
+    return c.word;
+}
+function renderLearning(s, u) {
+    const all = (0, store_1.published)(s);
+    const c = current(s);
+    const isEn = s.mode === 'en';
+    const place = s.mode === 'place';
+    if (!all.length)
+        return heading('这里暂时没有可学习的内容。', '请到教学资料库恢复演示内容。', 'YOUR LEARNING SPACE') + `<button class="btn primary" data-action="navigate" data-page="library">打开资料库</button>`;
+    const key = (0, exports.revealKey)(c.id, s.mode);
+    const index = all.findIndex(x => x.id === c.id) + 1;
+    return heading('看见关系，理解单词。', '先观察，再猜测。用一个画面，让空间关系清晰起来。', 'LEARN BY EXPLORING', true) +
+        (isEn ? `<div class="focus-note">${(0, icons_1.icon)('eye')}看图猜英文：目标词、词库和标准例句已在界面隐藏。<button class="text-link" style="margin-left:auto" data-action="mode" data-mode="zh">返回词汇浏览</button></div>` :
+            `<div class="search-row"><form id="wordSearch" class="search-form" role="search">${(0, icons_1.icon)('search')}<label class="sr-only" for="wordQuery">输入英文单词或短语</label><input id="wordQuery" autocomplete="off" maxlength="60" placeholder="输入英文单词或短语，例如 through" value="${(0, scene_1.escapeHtml)(u.search)}"><button type="submit">探索 ${(0, icons_1.icon)('arrow', 'small')}</button></form><span class="search-tip">${all.length} 个可探索词条 <span aria-hidden="true">·</span> 已有资源直接复用</span></div>`) +
+        (u.unknown ? `<div class="unknown-panel"><div><strong>“${(0, scene_1.escapeHtml)(u.unknown)}” 还没有可用的演示素材</strong><p>提交给教师准备；陌生词不会被随意套上一张图片。</p></div><button class="btn small" data-action="request-unknown">${(0, icons_1.icon)('plus')}提交新词需求</button></div>` : '') +
+        `<div class="learning-grid"><section aria-label="词义可视化"><div class="scene-card"><div class="scene-header"><div><div class="word-eyebrow"><i class="dot ${c.category}"></i>${content_1.categories[c.category].en} <span> / ${index.toString().padStart(2, '0')}</span></div><h2 class="word-title ${isEn ? 'question-title' : place ? 'instruction' : ''}" id="wordTitle">${(0, scene_1.escapeHtml)(titleFor(c, s.mode))}</h2><div class="word-sub">${(0, icons_1.icon)(place ? 'move' : c.motion ? 'play' : 'eye')}<span>${place ? '点击、拖动或用方向键摆放物体' : c.motion ? '观察起点、路径与终点' : '仔细看物体之间的关系'}</span></div></div><button class="icon-btn" data-action="variant" title="换个变式" aria-label="换个变式">${(0, icons_1.icon)('shuffle', 'small')}</button></div><div class="scene-wrap"><div class="scene-tags"><span class="tiny-pill">${place ? '交互场景' : c.motion ? '动态示意' : '静态示意'}</span><span class="tiny-pill">本地模板</span></div>${c.scene === 'through' ? `<button class="scene-xray ${u.xray ? 'active' : ''}" data-action="xray" aria-pressed="${u.xray}">${(0, icons_1.icon)('eye')} ${u.xray ? '关闭透视' : '透视观察'}</button>` : ''}<div id="sceneHost">${(0, scene_1.sceneSvg)(c.scene, u.t, { variant: u.variant, xray: u.xray, placement: place ? u.position : undefined, interactive: place, description: c.description })}</div><div class="scene-legend"><span><i class="legend-dot"></i>主体</span><span><i class="legend-dot reference"></i>参照物</span></div><span class="scene-phase" id="scenePhase">${place ? '自由放置' : c.motion ? phase(u.t) : '固定观察者视角'}</span></div>${renderPlayer(s, u, c)}</div><div class="next-row">${!isEn && c.contrast ? `<button class="contrast-btn" data-action="compare">${(0, icons_1.icon)('shuffle')} 对比一下 <strong>${(0, scene_1.escapeHtml)(c.word)} / ${(0, scene_1.escapeHtml)((0, content_1.byId)(c.contrast).word)}</strong></button>` : '<span class="muted" style="font-size:10px">一次只关注一个关系</span>'}<button class="next-btn" data-action="next" aria-label="探索下一个词">下一个 ${(0, icons_1.icon)('arrow')}</button></div></section><section class="practice-card" aria-label="练习"><div class="practice-eyebrow">A LITTLE CHALLENGE <span class="counter">${s.visited.length} / ${all.length} 已探索</span></div><div class="mode-tabs" role="group" aria-label="练习模式">${['zh', 'en', 'place'].map(mode => `<button class="mode-tab ${mode === s.mode ? 'active' : ''}" data-action="mode" data-mode="${mode}" aria-pressed="${mode === s.mode}">${modeNames[mode]}</button>`).join('')}</div><h3>${place ? '让物体到达正确的位置。' : isEn ? '你会怎样用英文描述？' : '这个词在画面里是什么意思？'}</h3><p class="quiz-desc">${place ? '先读上面的英文指令，再摆放橙色球。' : isEn ? '写下符合画面的英文单词或短语。' : '不急着看答案，先用自己的话说一说。'}</p>${place ? renderPlacement(u) : `<form id="answerForm"><label class="sr-only" for="answerInput">${isEn ? '填写你的英文回答' : '填写你的中文回答'}</label><textarea class="answer-input" id="answerInput" rows="2" maxlength="200" placeholder="${isEn ? 'Type a word or phrase…' : '我觉得它表示……'}" ${u.busy ? 'disabled' : ''}>${(0, scene_1.escapeHtml)(u.answer)}</textarea><div class="input-footer"><span>Enter 提交 · Shift + Enter 换行</span><span id="answerCount">${[...u.answer].length}/200</span></div><button class="btn primary wide quiz-submit" type="submit" ${u.busy ? 'disabled' : ''}>${u.busy ? '<span class="spinner"></span>正在判断…' : `确认我的猜测 ${(0, icons_1.icon)('arrow')}`}</button></form>`}<div id="feedbackSlot" aria-live="polite">${renderFeedback(u.result)}</div><div class="secondary-actions"><button class="subtle-btn" data-action="hint">${(0, icons_1.icon)('bulb')}给我一个提示</button><button class="subtle-btn" data-action="reveal" aria-expanded="${u.showTranslation}">${(0, icons_1.icon)(u.showTranslation ? 'hidden' : 'eye')}${u.showTranslation ? '收起答案' : isEn ? '显示英文与中文' : '显示中文'}</button></div>${u.showHint ? `<div class="hint-box" role="status">${(0, scene_1.escapeHtml)(c.hint)}</div>` : ''}${s.revealed.includes(key) ? `<div class="revealed-marker">${(0, icons_1.icon)('eye', 'small')}这道题已看过答案；收起后仍会保留标记。</div>` : s.hinted.includes(key) ? '<div class="revealed-marker">已使用提示；不计为独立作答。</div>' : ''}${u.showTranslation ? `<div class="answer-section" id="revealedAnswer">${isEn ? `<div class="muted" style="font-size:13px;margin-bottom:5px">${(0, scene_1.escapeHtml)(c.word)}</div>` : ''}<div class="answer-translation">${(0, scene_1.escapeHtml)(c.zh)}</div><p class="answer-example">${(0, scene_1.escapeHtml)(c.example)}<span>${(0, scene_1.escapeHtml)(c.exampleZh)}</span></p></div>` : ''}<div class="practice-footnote">${(0, icons_1.icon)('shield')}<span>${s.mockEnabled ? '演示规则 + 模拟路由；没有真实模型调用。' : '当前使用本地规则；陌生表达可能无法自动判断。'}<br>理解意思比逐字一致更重要。</span></div></section></div>${isEn ? renderHiddenShelf(s) : renderShelf(s, u)}`;
+}
+function phase(t) { return t < .16 ? '起点' : t > .86 ? '终点' : '运动过程'; }
+function renderPlayer(s, u, c) {
+    if (s.mode === 'place')
+        return `<div class="static-caption"><span>点击任意目标位置，或聚焦画布后用方向键。</span><button class="mini-action" data-action="place-reset">${(0, icons_1.icon)('restart')}重置位置</button></div>`;
+    if (!c.motion)
+        return `<div class="static-caption"><span>位置关系 · 无需播放</span><button class="mini-action" data-action="variant">${(0, icons_1.icon)('shuffle')}换个变式</button></div>`;
+    return `${s.reduceMotion ? '' : `<div class="player"><button class="play-btn" data-action="play" id="playButton" aria-label="${u.playing ? '暂停动画' : '播放动画'}">${(0, icons_1.icon)(u.playing ? 'pause' : 'play')}</button><button class="mini-control" data-action="replay" aria-label="重播动画">${(0, icons_1.icon)('restart')}</button><input class="timeline" id="timeline" type="range" min="0" max="1000" step="1" value="${Math.round(u.t * 1000)}" aria-label="动画进度"><span class="time-text" id="timeText">${(u.t * 3.2).toFixed(1)} / 3.2 s</span><label class="sr-only" for="speed">播放速度</label><select id="speed" class="speed-select">${[.5, 1, 1.5].map(n => `<option value="${n}" ${u.speed === n ? 'selected' : ''}>${n}×</option>`).join('')}</select></div>`}<div class="player-bottom"><span>${s.reduceMotion ? '减少动态效果已开启：用关键帧观察。' : '播放到终点后停止，可随时重播。'}</span><button class="mini-action" data-action="frames" aria-expanded="${u.showFrames || s.reduceMotion}">${(0, icons_1.icon)('grid')}分步观察</button></div>${u.showFrames || s.reduceMotion ? `<div class="frame-buttons">${[0, .5, 1].map((n, i) => `<button class="frame-btn ${Math.abs(u.t - n) < .05 ? 'active' : ''}" data-action="frame" data-t="${n}">${['起点', '过程', '终点'][i]}</button>`).join('')}</div>` : ''}`;
+}
+function renderPlacement(u) { return `<div class="placement-instructions">${(0, icons_1.icon)('move', 'small')} 拖动橙色球，或者直接点击画面中的目标位置。也可以使用下面的方向按钮。</div><div class="direction-pad" role="group" aria-label="移动物体">${['up', 'left', 'down', 'right'].map(dir => `<button data-action="move" data-dir="${dir}" aria-label="${{ up: '向上移动', left: '向左移动', down: '向下移动', right: '向右移动' }[dir]}">${(0, icons_1.icon)({ up: 'arrowUp', left: 'chevronLeft', down: 'arrowDown', right: 'arrow' }[dir])}</button>`).join('')}</div><button class="btn primary wide quiz-submit" data-action="check-place" ${u.busy ? 'disabled' : ''}>检查我的位置 ${(0, icons_1.icon)('check')}</button>`; }
+function renderFeedback(r) {
+    if (!r)
+        return '';
+    const titles = { correct: '理解得很准确！', close: '很接近，再想一步。', incorrect: '换个角度，再试一次。', uncertain: '暂时还不能确定。' };
+    const type = r.status === 'not_evaluated' ? 'not-evaluated' : r.verdict;
+    const title = r.status === 'not_evaluated' ? '这次不记为答错' : titles[r.verdict];
+    const source = r.source === 'rules' ? '本地规则' : r.source === 'geometry' ? '本地几何规则' : `模拟输出${r.profile ? ' · ' + r.profile + ' · 路由 v' + r.routeRevision : ''}${r.fallback ? ' · 已使用演示备用配置' : ''}`;
+    return `<div class="feedback ${type}" data-verdict="${r.verdict || 'not_evaluated'}"><div class="feedback-title">${(0, icons_1.icon)(type === 'correct' ? 'check' : type === 'close' ? 'bulb' : 'info')}<span>${title}</span></div><p>${(0, scene_1.escapeHtml)(r.feedback)}</p><div class="source-line">${(0, scene_1.escapeHtml)(source)}</div></div>`;
+}
+function renderShelf(s, u) {
+    const all = (0, store_1.published)(s), filtered = all.filter(c => u.category === 'all' || c.category === u.category);
+    return `<section class="word-shelf" aria-label="词汇探索"><div class="section-top"><h3>继续探索<span>${all.length} 个空间词与短语</span></h3><div class="filter-chips"><button class="filter-chip ${u.category === 'all' ? 'active' : ''}" data-action="category" data-category="all">全部</button>${Object.entries(content_1.categories).map(([k, v]) => `<button class="filter-chip ${u.category === k ? 'active' : ''}" data-action="category" data-category="${k}">${v.label}</button>`).join('')}</div></div><div class="word-grid">${filtered.map(c => `<button class="word-tile ${c.id === s.currentId ? 'active' : ''}" data-action="select-card" data-id="${c.id}" aria-label="学习 ${(0, scene_1.escapeHtml)(c.word)}"><span class="tiny-index">${(all.findIndex(x => x.id === c.id) + 1).toString().padStart(2, '0')}</span><strong>${(0, scene_1.escapeHtml)(c.word)}</strong>${s.visited.includes(c.id) ? '<i class="visited-dot" title="已探索"></i>' : ''}</button>`).join('')}</div>${!filtered.length ? '<p class="empty-shelf-note">此分类没有已发布素材。</p>' : ''}</section>`;
+}
+function renderHiddenShelf(s) { return `<section class="word-shelf"><div class="section-top"><h3>专注观察，不提前看词<span>猜英文模式</span></h3></div><div class="focus-note">${(0, icons_1.icon)('lock')}词库暂时隐藏。可用“下一个”更换场景；需要帮助时点击“显示英文与中文”。</div><div class="progress-dots" aria-label="${s.visited.length} 个场景已探索">${content_1.cards.map(c => `<i class="${s.visited.includes(c.id) ? 'done' : ''}"></i>`).join('')}</div></section>`; }
+function metrics(items) {
+    return `<div class="metric-grid">${items.map(([label, num, unit, ic]) => `<div class="metric"><div class="metric-label">${(0, icons_1.icon)(ic)}${label}</div><div class="metric-number">${num}<small>${unit}</small></div></div>`).join('')}</div>`;
+}
+function renderLibrary(s, u) {
+    const all = (0, store_1.published)(s);
+    const waiting = s.jobs.filter(j => ['requested', 'preparing', 'review'].includes(j.status));
+    return heading('一个会积累的教学资料库。', '先复用已有资源；缺少时准备草稿，经你确认后再交给学生。', 'CONTENT STUDIO') +
+        metrics([['演示发布库', all.length, '个词条', 'layers'], ['等待处理', waiting.length, '个请求 / 草稿', 'clock'], ['真实生成调用', 0, '本地模板，无费用', 'shield']]) +
+        `<div class="request-box"><h3>试试补充一个还没有的词</h3><form class="request-form" id="staffRequest"><label class="sr-only" for="newTerm">新词或短语</label><input id="newTerm" maxlength="60" autocomplete="off" placeholder="例如 near"><button class="btn primary" type="submit">${(0, icons_1.icon)('plus')}建立需求</button></form><div class="sample-words"><span>演示支持的扩展模板：</span>${Object.keys(content_1.extensionCards).map(w => `<button data-action="request-sample" data-term="${w}">${w}</button>`).join('')}</div><p class="small-note">扩展词使用预编模板，不是假装实时 AI 生图。未知词可以登记需求，但不会自动配一张不准确的图。</p></div>` +
+        `<div class="library-tabs" role="group" aria-label="资料库视图">${['published', 'requests', 'withdrawn'].map(tab => `<button class="library-tab ${u.libraryTab === tab ? 'active' : ''}" data-action="library-tab" data-tab="${tab}">${{ published: '已发布', requests: '需求与审核', withdrawn: '已撤回' }[tab]} <span class="muted">${tab === 'published' ? all.length : tab === 'requests' ? s.jobs.length : s.withdrawn.length + s.jobs.filter(j => j.status === 'withdrawn').length}</span></button>`).join('')}</div>` +
+        (u.libraryTab === 'requests' ? renderJobs(s) : u.libraryTab === 'withdrawn' ? renderWithdrawn(s) : `<div class="library-card-grid">${all.map(c => `<article class="library-card"><div class="thumbnail">${(0, scene_1.sceneSvg)(c.scene, c.motion ? .8 : 0, { description: c.description, mini: true })}<span class="tag">${c.id.startsWith('ext-') ? '模板实例' : '内置演示'}</span></div><div class="library-card-info"><h4>${(0, scene_1.escapeHtml)(c.word)}</h4><p>${(0, scene_1.escapeHtml)(c.zh)}</p><div class="card-actions"><button class="btn small" data-action="preview-card" data-id="${c.id}">${(0, icons_1.icon)('eye')}学习预览</button><button class="subtle-btn" data-action="withdraw" data-id="${c.id}">撤回</button></div></div></article>`).join('')}</div>`) +
+        `<p class="small-note">教师操作仅改变此浏览器中的演示仓储，不是生产权限。内置内容尚未经过学校教师的正式审核。</p>`;
+}
+function renderJobs(s) {
+    if (!s.jobs.length)
+        return `<div class="panel blank">${(0, icons_1.icon)('folder')}<h3>每个新词，从一个需求开始。</h3><p>上方点击 near，或者在学习页搜索未收录的词，再提交需求。</p></div>`;
+    return s.jobs.map(j => `<article class="job-row" data-job="${(0, scene_1.escapeHtml)(j.id)}"><div class="job-icon">${j.status === 'preparing' ? '<span class="spinner"></span>' : (0, icons_1.icon)(j.status === 'published' ? 'check' : 'folder')}</div><div class="job-content"><h4>${(0, scene_1.escapeHtml)(j.term)} <span class="tag ${j.status === 'review' ? 'amber' : j.status === 'published' ? '' : 'grey'}">${statusNames[j.status]}</span></h4><p>${j.templateKey ? '可控本地模板 · 不调用图片生成模型' : '暂无匹配模板 · 待教师设计内容，不生成假图'}</p><div class="pipeline"><span class="done">需求</span> → <span class="${['preparing', 'review', 'published'].includes(j.status) ? 'done' : ''}">模板草稿</span> → <span class="${['review', 'published'].includes(j.status) ? 'done' : ''}">人工确认</span> → <span class="${j.status === 'published' ? 'done' : ''}">复用</span></div></div><div class="job-actions">${j.status === 'requested' ? `<button class="btn small primary" data-action="generate-template" data-id="${(0, scene_1.escapeHtml)(j.id)}" ${!j.templateKey ? 'disabled' : ''}>${(0, icons_1.icon)('spark')}准备模板草稿</button><button class="subtle-btn" data-action="reject-job" data-id="${(0, scene_1.escapeHtml)(j.id)}">拒绝</button>` : j.status === 'review' ? `<button class="btn small primary" data-action="review-job" data-id="${(0, scene_1.escapeHtml)(j.id)}">${(0, icons_1.icon)('eye')}预览与审核</button>` : j.status === 'published' ? `<button class="btn small" data-action="preview-card" data-id="${j.templateKey ? content_1.extensionCards[j.templateKey].id : ''}">打开词卡</button>` : j.status === 'preparing' ? '<span class="muted" style="font-size:10px">正在构建模板实例…</span>' : ''}</div></article>`).join('');
+}
+function renderWithdrawn(s) {
+    const rows = [...content_1.cards.filter(c => s.withdrawn.includes(c.id)), ...s.jobs.filter(j => j.status === 'withdrawn' && j.templateKey).map(j => content_1.extensionCards[j.templateKey])];
+    return rows.length ? rows.map(c => `<div class="job-row"><div class="job-icon">${(0, icons_1.icon)('hidden')}</div><div class="job-content"><h4>${(0, scene_1.escapeHtml)(c.word)}</h4><p>已从演示发布库移除；历史练习记录保持不变。</p></div><button class="btn small" data-action="restore" data-id="${c.id}">恢复演示发布</button></div>`).join('') : `<div class="panel blank">${(0, icons_1.icon)('shield')}<h3>没有撤回的内容。</h3><p>词卡撤回后不会继续出现在新的练习中。</p></div>`;
+}
+function renderSettings(s, u) {
+    return heading('让模型成为可替换的工具。', '为每项任务选择配置，先验证流程，再接入真实服务。', 'MODEL WORKBENCH') +
+        `<div class="settings-banner"><div><h3>${(0, icons_1.icon)('sliders')}模拟路由实验</h3><p>${s.mockEnabled ? '已开启本地 mock。选择的是目标配置，不会调用 DeepSeek 或 Qwen。' : '当前只运行本地规则。开启后可以体验模拟判答、配置切换与故障分支。'}</p></div><button class="switch ${s.mockEnabled ? 'on' : ''}" data-action="toggle-mock" role="switch" aria-checked="${s.mockEnabled}" aria-label="开启模拟路由"><span></span></button></div>` +
+        `<section class="panel"><div class="panel-heading"><div><h3>按任务路由</h3><p>切换只影响新的模拟请求；已发布画面和历史结果不变。</p></div><span class="tag grey">配置演示</span></div><div class="model-routes">${['grade', 'explain', 'scene'].map(task => { const r = s.routes[task]; return `<div class="route-row"><div class="route-task"><h4>${exports.taskNames[task]}</h4><small>${{ grade: 'grade_answer', explain: 'explain_sense', scene: 'compose_scene' }[task]} · v${r.revision}</small>${u.lastRoutes[task] ? `<br><button class="subtle-btn" data-action="rollback" data-task="${task}">撤销上次配置修改</button>` : ''}</div><div class="field"><label for="primary-${task}">主目标配置</label><select id="primary-${task}" data-route-task="${task}" data-route-key="primary">${['deepseek', 'qwen'].map(p => `<option value="${p}" ${p === r.primary ? 'selected' : ''}>${mock_1.profileNames[p]}</option>`).join('')}</select></div><div class="field"><label for="secondary-${task}">备用目标配置</label><select id="secondary-${task}" data-route-task="${task}" data-route-key="secondary">${['deepseek', 'qwen'].map(p => `<option value="${p}" ${p === r.secondary ? 'selected' : ''}>${mock_1.profileNames[p]}</option>`).join('')}</select></div><div class="field"><label>备用使用范围</label><label class="inline-check"><input type="checkbox" data-approval-task="${task}" ${r.fallbackApproved ? 'checked' : ''}>演示批准</label></div></div>`; }).join('')}</div><div class="capability-row"><span class="capability-chip">文字：mock 接口</span><span class="capability-chip">动画：本地白名单模板</span><span class="capability-chip">图片 / 视频生成：未接入</span><span class="capability-chip">真实学生数据批准：未启用</span></div><p class="small-note">“演示批准”只用于测试本地回退分支，不是服务条款或学生数据使用授权。无需填写 API key，页面也不会收集密钥。</p></section>` +
+        `<section class="panel"><div class="panel-heading"><div><h3>模拟探针与故障实验</h3><p>用固定合成样例检验路由行为，不测试真实模型准确率。</p></div><span class="tag blue">本地 · 零外部请求</span></div><div class="probe-controls"><div class="field"><label for="probeTask">测试任务</label><select id="probeTask">${['grade', 'explain', 'scene'].map(t => `<option value="${t}" ${u.probeTask === t ? 'selected' : ''}>${exports.taskNames[t]}</option>`).join('')}</select></div><div class="field"><label for="fault">下一次模拟请求的状态</label><select id="fault">${Object.entries({ none: '正常返回', timeout: '模拟超时（停止，不回退）', rate_limit: '主模型限流（检查备用批准）', unapproved: '备用未批准（必须停止）', budget: '演示预算不足（调用数为 0）', invalid_json: '主模型 JSON 错误' }).map(([k, v]) => `<option value="${k}" ${s.nextFault === k ? 'selected' : ''}>${v}</option>`).join('')}</select></div><button class="btn primary" data-action="probe" ${u.probeBusy ? 'disabled' : ''}>${u.probeBusy ? '<span class="spinner"></span>' : (0, icons_1.icon)('play')}${u.probeBusy ? '模拟运行中' : '运行合成探针'}</button></div>${u.probeResult ? `<div class="probe-result"><strong>模拟结果 · ${(0, scene_1.escapeHtml)(u.probeResult.profile || '未派发')} · v${u.probeResult.routeRevision || s.routes[u.probeTask].revision}</strong>${(0, scene_1.escapeHtml)(u.probeResult.feedback)}<p class="small-note">status: ${u.probeResult.status} · verdict: ${u.probeResult.verdict || 'null'} · source: mock</p></div>` : ''}</section>` +
+        `<section class="panel"><div class="panel-heading"><div><h3>调用观察</h3><p>仅记录模拟元数据，不保存学生自由回答。</p></div><span class="tag">真实模型调用：0</span></div>${s.logs.length ? `<div class="data-table-wrap"><table class="data-table"><thead><tr><th>任务</th><th>实际模拟路径</th><th>版本</th><th>状态</th><th>模拟次数</th><th>时间</th></tr></thead><tbody>${s.logs.slice(0, 10).map(l => `<tr><td>${exports.taskNames[l.task]}</td><td>${(0, scene_1.escapeHtml)(l.profile)}</td><td>v${l.revision}</td><td>${(0, scene_1.escapeHtml)(l.status)}</td><td>${l.calls}</td><td>${time(l.at)}</td></tr>`).join('')}</tbody></table></div>` : '<div class="blank"><p>还没有模拟记录。可以先开启模拟路由，再运行一个合成探针。</p></div>'}<p class="small-note">这里的次数不是实际 API 用量，演示没有真实账单或自动扣费。</p></section>`;
+}
+function time(n) { return new Date(n).toLocaleTimeString('zh-CN', { hour: '2-digit', minute: '2-digit', second: '2-digit' }); }
+function renderRecords(s) {
+    const count = s.attempts.length, good = s.attempts.filter(a => a.verdict === 'correct' && a.independent).length, help = s.attempts.filter(a => a.status === 'not_evaluated' || a.verdict === 'uncertain').length;
+    const all = [...content_1.cards, ...Object.values(content_1.extensionCards)];
+    return heading('把每次尝试，变成学习线索。', '只记录本地演示结果，不根据练习次数推断学习能力。', 'YOUR LEARNING TRAIL') +
+        metrics([['练习尝试', count, '次本地记录', 'chart'], ['独立答对', good, '未看提示或答案', 'check'], ['未判断 / 不确定', help, '次，不当作答错', 'info']]) +
+        `<section class="panel"><div class="records-toolbar"><h3>最近练习</h3><div class="row-actions"><button class="btn small" data-action="export">${(0, icons_1.icon)('download')}导出演示记录</button><button class="btn small danger" data-action="reset">重置演示</button></div></div>${count ? `<div class="data-table-wrap"><table class="data-table"><thead><tr><th>词条</th><th>模式</th><th>结果</th><th>独立作答</th><th>判答来源</th><th>时间</th></tr></thead><tbody>${s.attempts.slice().reverse().slice(0, 50).map(a => `<tr><td class="word-cell">${(0, scene_1.escapeHtml)((0, content_1.byId)(a.cardId, all).word)}</td><td>${modeNames[a.mode]}</td><td><span class="record-status ${a.verdict || ''}">${a.status === 'not_evaluated' ? '未完成判断' : { correct: '正确', close: '接近', incorrect: '再试一次', uncertain: '不确定' }[a.verdict]}</span></td><td>${a.independent ? '是' : '已使用帮助'}</td><td>${a.source === 'rules' ? '本地规则' : a.source === 'geometry' ? '几何规则' : '模拟 · ' + (0, scene_1.escapeHtml)(a.profile || '本地')}</td><td>${time(a.at)}</td></tr>`).join('')}</tbody></table></div>` : `<div class="blank">${(0, icons_1.icon)('book')}<h3>还没有练习记录。</h3><p>回到学习空间，选择一个词，写下你的第一个猜测。</p><button class="btn primary" data-action="navigate" data-page="learn">开始探索 ${(0, icons_1.icon)('arrow')}</button></div>`}<p class="small-note">数据只保存在当前浏览器（可用时）。只保留最近 100 次结果，不保存原始输入；不是正式学生成绩。</p></section>`;
+}
+function renderModal(s, u) {
+    if (!u.modal)
+        return '';
+    let title = '', sub = '', body = '', actions = '';
+    const small = u.modal.type === 'reset';
+    if (u.modal.type === 'about') {
+        title = '从一个词，开始探索。';
+        sub = 'Spatial Lab · 交互演示 v0.1';
+        body = `<div class="about-grid"><div class="about-item">${(0, icons_1.icon)('eye')}<h3>01 / 看一个画面</h3><p>搜索或选择 24 个空间词。动画可以播放、暂停、重播、分步查看。</p></div><div class="about-item">${(0, icons_1.icon)('bulb')}<h3>02 / 先猜，再揭示</h3><p>猜中文、猜英文，或亲手摆放物体。中文要点击才显示。</p></div><div class="about-item">${(0, icons_1.icon)('layers')}<h3>03 / 让素材积累</h3><p>搜索 near 并提交需求。在资料库准备模板草稿、审核发布，再回去复用。</p></div><div class="about-item">${(0, icons_1.icon)('sliders')}<h3>04 / 试试模型切换</h3><p>模型设置中开启 mock，切换候选配置、运行探针，并测试超时和备用未批准。</p></div></div><p class="small-note"><strong>已实现：</strong>本地场景、规则判答、演示草稿发布、本地记录。<br><strong>模拟：</strong>AI 路由、供应商状态、审批与预算故障。<br><strong>未接入：</strong>真实 AI / Cloudflare D1、R2 / 用户鉴权 / 正式课堂数据。<br>演示内容可在开发者工具中查看；这不是考试防作弊系统。请勿输入真实学生个人信息。</p>`;
+        actions = '<button class="btn primary" data-action="close-modal">开始探索 ' + (0, icons_1.icon)('arrow') + '</button>';
+    }
+    else if (u.modal.type === 'reset') {
+        title = '重新开始这个演示？';
+        sub = '只清除当前浏览器的演示数据。';
+        body = '<p class="small-note">将恢复 24 个内置词条，清除本地练习记录、新词需求、揭示标记和模拟模型设置。不会修改你之前的计划文档或任何云端资料。</p>';
+        actions = '<button class="btn" data-action="close-modal">保留数据</button><button class="btn primary" data-action="confirm-reset">确认重置</button>';
+    }
+    else if (u.modal.type === 'compare') {
+        const a = current(s), b = (0, content_1.byId)(a.contrast || 'in');
+        title = '相似的词，不同的关系。';
+        sub = '对比观察算作使用提示，不计为独立作答。';
+        body = `<div class="compare-grid">${[a, b].map(c => `<div class="compare-pane"><h3>${(0, scene_1.escapeHtml)(c.word)}</h3>${(0, scene_1.sceneSvg)(c.scene, c.motion ? u.compareT : 0, { xray: c.scene === 'through', description: c.description })}<p>${(0, scene_1.escapeHtml)(c.note)}</p></div>`).join('')}</div><div class="frame-buttons" style="margin:16px 0">${[0, .5, 1].map((t, i) => `<button class="frame-btn ${t === u.compareT ? 'active' : ''}" data-action="compare-frame" data-t="${t}">${['看起点', '看过程', '看终点'][i]}</button>`).join('')}</div>`;
+        actions = '<button class="btn primary" data-action="close-modal">回去再试一次 ' + (0, icons_1.icon)('arrow') + '</button>';
+    }
+    else if (u.modal.type === 'review') {
+        const j = s.jobs.find(x => x.id === u.modal.id);
+        const c = j?.templateKey ? content_1.extensionCards[j.templateKey] : null;
+        if (!j || !c)
+            return '';
+        title = '审核模板草稿';
+        sub = '本地模板实例 · 未调用生成模型 · 仅发布到本演示';
+        body = `<h3>${(0, scene_1.escapeHtml)(c.word)} <span class="tag amber">${statusNames[j.status]}</span></h3><div class="review-scene">${(0, scene_1.sceneSvg)(c.scene, 1, { description: c.description })}</div><h3>${(0, scene_1.escapeHtml)(c.zh)}</h3><p class="answer-example">${(0, scene_1.escapeHtml)(c.example)}<span>${(0, scene_1.escapeHtml)(c.exampleZh)}</span></p><p class="small-note">教学说明：${(0, scene_1.escapeHtml)(c.note)}<br>允许的中文表达：${(0, scene_1.escapeHtml)(c.acceptedZh.join('、'))}<br>确认词义、画面和例句一致后，才发布到本地学习库。</p>`;
+        actions = `<button class="btn danger" data-action="reject-job" data-id="${j.id}">拒绝草稿</button><button class="btn primary" data-action="approve-job" data-id="${j.id}">${(0, icons_1.icon)('check')}确认并发布</button>`;
+    }
+    return `<div class="modal-backdrop" data-action="backdrop-close"><section class="modal ${small ? 'modal-small' : ''}" role="dialog" aria-modal="true" aria-labelledby="modalTitle"><div class="modal-top"><div><h2 id="modalTitle">${title}</h2><p>${sub}</p></div><button class="icon-btn" data-action="close-modal" aria-label="关闭对话框">${(0, icons_1.icon)('cross', 'small')}</button></div>${body}<div class="modal-actions">${actions}</div></section></div>`;
+}
+
+},
+"rules":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.normalizeAnswer = normalizeAnswer;
+exports.judgeRule = judgeRule;
+exports.ruleResult = ruleResult;
+exports.unavailable = unavailable;
+function normalizeAnswer(s) {
+    return s.normalize('NFKC').trim().toLowerCase().replace(/[。.!！?？]+$/g, '').replace(/\s+/g, ' ');
+}
+const match = (s, list) => list.some(x => normalizeAnswer(x) === s);
+function judgeRule(card, mode, raw) {
+    const s = normalizeAnswer(raw);
+    if (!s || [...s].length > 200)
+        return { verdict: 'uncertain', reason: 'INPUT_LENGTH', feedback: '请用 1–200 个字简短描述你的想法。' };
+    if (match(s, ['不知道', '不确定', '我不知道', '不知道怎么说', '不懂', 'i don’t know', "i don't know", 'idk', '?']))
+        return { verdict: 'uncertain', reason: 'UNSURE', feedback: '没关系，可以先看提示，或再播放一次。' };
+    if (card.id === 'under' && match(s, ['桌子在球下面', '桌子在球的下面', 'the table is under the ball']))
+        return { verdict: 'incorrect', reason: 'REVERSED_ROLES', feedback: '再确认是谁相对于谁的位置：先找球，再看桌子。' };
+    if (card.id === 'under' && match(s, ['不是在下面', '不在下面', '不是在桌子下面']))
+        return { verdict: 'incorrect', reason: 'NEGATION', feedback: '这句话否定了画面中的位置。再比较球与桌面的高低。' };
+    const accepted = mode === 'en' ? card.acceptedEn : [...card.acceptedZh, card.exampleZh];
+    if (match(s, accepted))
+        return { verdict: 'correct', reason: 'MEANING_MATCH', feedback: mode === 'en' ? '答对了！这个英文表达符合画面。' : '答对了！你抓住了这个词在画面中的意思。' };
+    if (mode === 'zh' && card.closeZh && match(s, card.closeZh)) {
+        let msg = '你说对了一部分，再仔细观察完整的关系。';
+        if (card.id === 'through')
+            msg = '很接近！你说清了移动到另一边，再想想它是从哪里经过的。';
+        if (['into', 'out-of', 'onto', 'off'].includes(card.id))
+            msg = '很接近！你描述了位置，再观察它是怎样移动到那里的。';
+        if (card.id === 'perpendicular')
+            msg = '你注意到了相交，再看看相交形成的角。';
+        return { verdict: 'close', reason: card.id === 'through' ? 'MISSING_INTERIOR_PATH' : 'PARTIAL_MEANING', feedback: msg };
+    }
+    if (mode === 'zh' && card.wrongZh && match(s, card.wrongZh))
+        return { verdict: 'incorrect', reason: 'WRONG_RELATION', feedback: '再观察一次物体的位置或移动方向，你可以重新试试。' };
+    const opposed = { in: ['outside'], under: ['on', 'above'], above: ['below', 'under'], into: ['out of'], 'out-of': ['into'], onto: ['off'], off: ['onto'], toward: ['away from'], 'away-from': ['toward', 'towards'], left: ['right', 'to the right of'], right: ['left', 'to the left of'], horizontal: ['vertical'], vertical: ['horizontal'], parallel: ['perpendicular', 'perpendicular to'], perpendicular: ['parallel', 'parallel to'], behind: ['in front of'], 'in-front-of': ['behind'] };
+    if (mode === 'en' && match(s, opposed[card.id] || []))
+        return { verdict: 'incorrect', reason: 'WRONG_DIRECTION', feedback: '这个表达的方向或关系与画面不同，再看一次。' };
+    return null;
+}
+function ruleResult(d) { return { status: 'evaluated', verdict: d.verdict, reason: d.reason, feedback: d.feedback, source: 'rules' }; }
+function unavailable(reason = 'LOCAL_ONLY') { return { status: 'not_evaluated', verdict: null, source: 'mock', reason, feedback: '这句话暂时无法自动判断，这次不记为答错。可以换一种简短表达，或请老师确认。' }; }
+
+},
+"scene":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.escapeHtml = escapeHtml;
+exports.sceneSvg = sceneSvg;
+const geometry_1 = require("./geometry");
+function escapeHtml(s) { return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+const fixed = (n) => Math.round(n * 100) / 100;
+function ball(p, variant) {
+    const x = fixed(p.x), y = fixed(p.y);
+    const body = variant % 2 === 0 ? '<circle r="24" fill="#e98d67"/><ellipse cx="-7" cy="-8" rx="9" ry="5" transform="rotate(-35)" fill="#ffd6b8" opacity=".85"/><path d="M-21 8q20 7 35-22" fill="none" stroke="#c87552" stroke-width="2" opacity=".6"/>' : '<circle r="24" fill="#e98d67"/><path d="M-20-13Q0 0 20 13M-22 9Q0-3 19-14" fill="none" stroke="#ffe0c6" stroke-width="3"/><ellipse cx="-7" cy="-9" rx="5" ry="3" fill="#fff0db"/>';
+    return `<g class="subject-object" data-x="${x}" data-y="${y}" transform="translate(${x} ${y})">${body}</g>`;
+}
+function cube(x, y, size = 90) {
+    const w = size, h = size * .8, d = size * .23;
+    return `<g><ellipse cx="${x + w / 2}" cy="${y + h + 5}" rx="${w * .69}" ry="10" fill="#dce6df" opacity=".5"/><path d="M${x} ${y}l${d} ${-d}h${w}l${-d} ${d}z" fill="#b5d8c5"/><path d="M${x + w} ${y}l${d} ${-d}v${h}l${-d} ${d}z" fill="#68a28a"/><rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2" fill="#93bfa6"/><path d="M${x + 15} ${y + 14}h${w * .5}" stroke="#b9d9c5" stroke-width="2"/></g>`;
+}
+function table() {
+    return '<g><ellipse cx="373" cy="327" rx="146" ry="13" fill="#dae4dd"/><path d="M291 216v104h-18V216M457 216v104h-17V216" fill="#86a995"/><path d="m250 205 29-17h172l29 17-25 18H279z" fill="#b5d1ba"/><path d="M250 205h230v16H250z" fill="#93bca0"/><path d="M280 226h172" stroke="#719a80" stroke-width="5"/></g>';
+}
+function boxBack() { return '<g><ellipse cx="367" cy="335" rx="120" ry="15" fill="#d8e4db"/><path d="m270 220 60-35 120 35-60 42z" fill="#557e66"/><path d="m270 220 60-35 120 35-8 6-112-30-52 30z" fill="#b9d7bb"/></g>'; }
+function boxFront() { return '<g><path d="m270 220 120 42v82l-120-39z" fill="#a1c6a6"/><path d="m390 262 60-42v83l-60 41z" fill="#7fa985"/><path d="m270 220 120 42 60-42" fill="none" stroke="#c8dfc8" stroke-width="4"/><path d="m329 241 16 6v42l-16-5z" fill="#d9e5c5" opacity=".6"/></g>'; }
+const base = '<ellipse cx="367" cy="316" rx="228" ry="18" fill="#dfe9e1" opacity=".46"/>';
+function arrow(x1, y1, x2, y2) {
+    const a = Math.atan2(y2 - y1, x2 - x1);
+    const x = fixed(x2), y = fixed(y2), k = 9;
+    return `<g fill="none" stroke="#809b8c" stroke-width="2.4" stroke-linecap="round"><path d="M${x1} ${y1}L${x} ${y}" stroke-dasharray="4 6"/><path d="M${fixed(x2 - k * Math.cos(a - .6))} ${fixed(y2 - k * Math.sin(a - .6))}L${x} ${y}L${fixed(x2 - k * Math.cos(a + .6))} ${fixed(y2 - k * Math.sin(a + .6))}" stroke-dasharray="none"/></g>`;
+}
+function sceneSvg(scene, t, options = {}) {
+    const variant = options.variant || 0, point = options.placement || (0, geometry_1.samplePosition)(scene, t, variant);
+    const subject = ball(point, variant);
+    let drawing = '';
+    if (['in', 'into', 'out', 'outside'].includes(scene)) {
+        drawing = boxBack() + subject + boxFront();
+        if (!options.placement && (scene === 'into' || scene === 'out'))
+            drawing += scene === 'into' ? arrow(488, 98, 488, 190) : arrow(488, 190, 488, 98);
+    }
+    else if (['on', 'under', 'above', 'onto', 'off'].includes(scene)) {
+        drawing = table() + subject;
+        if (!options.placement && scene === 'onto')
+            drawing += arrow(180, 112, 274, 112);
+        if (!options.placement && scene === 'off')
+            drawing += arrow(500, 167, 576, 214);
+    }
+    else if (scene === 'below') {
+        drawing = '<path d="M221 130v70M447 130v70" stroke="#cddcd0" stroke-width="5"/><path d="M205 191h270v17H205z" fill="#9dbba1"/><path d="M207 191l24-17h239l5 17z" fill="#c3d6ba"/><path d="M190 208h397" stroke="#bacbbf" stroke-dasharray="5 6"/>' + subject;
+    }
+    else if (['next', 'left', 'right', 'near', 'far', 'toward', 'away'].includes(scene)) {
+        const ref = scene === 'toward' || scene === 'away' ? 480 : 315;
+        drawing = base + cube(ref, 212, 110) + subject;
+        if (!options.placement && scene === 'toward')
+            drawing += arrow(210, 190, 358, 190);
+        if (!options.placement && scene === 'away')
+            drawing += arrow(358, 190, 210, 190);
+    }
+    else if (scene === 'front' || scene === 'behind') {
+        drawing = base + (scene === 'behind' ? subject : '') + cube(300, 205, 120) + (scene === 'front' ? subject : '');
+    }
+    else if (scene === 'between') {
+        drawing = base + cube(170, 220, 78) + cube(488, 220, 78) + subject;
+    }
+    else if (scene === 'among') {
+        drawing = base + cube(290, 150, 60) + cube(403, 166, 64) + cube(204, 215, 61) + cube(477, 229, 59) + subject + cube(263, 283, 62) + cube(394, 291, 57);
+    }
+    else if (scene === 'across') {
+        drawing = '<path d="m291 35-30 306h203L427 35z" fill="#d2ddd7"/><path d="m283 55-23 277m177-277 26 277" stroke="#b2c6ba" stroke-width="3"/><path d="M360 53v281" stroke="#fafbf3" stroke-width="7" stroke-dasharray="21 18"/><path d="M290 230h143M288 248h147M286 266h151" stroke="#edf2e8" stroke-width="10"/>' + arrow(170, 158, 542, 158) + subject;
+    }
+    else if (scene === 'through') {
+        const opacity = options.xray ? '.24' : '1';
+        drawing = base + '<path d="M252 184q106-64 213 0v119H252z" fill="#a6c9b3"/><ellipse cx="465" cy="246" rx="39" ry="59" fill="#406c59"/><ellipse cx="253" cy="246" rx="43" ry="61" fill="#466e59"/>' + subject + `<g opacity="${opacity}"><path d="M270 186q92-44 188-1v119H270z" fill="#9fc6ad"/><path d="M270 192q96-49 188-3" fill="none" stroke="#c9dfca" stroke-width="12"/><path d="M282 220h157M282 252h157M282 284h157" stroke="#8fb69c" stroke-width="2"/><path d="M323 208v91M381 208v91" stroke="#8fb69c" stroke-width="2"/></g><path d="M212 305v-62c0-75 80-75 80 0v62" fill="none" stroke="#b8d6bb" stroke-width="12"/><path d="M429 187q73-2 74 57v61" fill="none" stroke="#b5d3b9" stroke-width="8"/>` + arrow(165, 107, 533, 107);
+    }
+    else if (['horizontal', 'vertical', 'parallel', 'perpendicular'].includes(scene)) {
+        const lines = (0, geometry_1.lineVectors)(scene, variant), cx = 360, cy = 218;
+        drawing = '<path d="M153 311h415M182 80v250" stroke="#d5e0d6" stroke-width="2" stroke-dasharray="4 7"/>';
+        lines.forEach((v, i) => {
+            const offset = scene === 'parallel' ? (i === 0 ? -40 : 40) : 0;
+            const x1 = fixed(cx - v.x / 2), y1 = fixed(cy - v.y / 2 + offset), x2 = fixed(cx + v.x / 2), y2 = fixed(cy + v.y / 2 + offset);
+            drawing += `<g stroke="${i ? '#559c83' : '#e3916f'}" stroke-width="8" stroke-linecap="round"><path d="M${x1} ${y1}L${x2} ${y2}"/></g><circle cx="${x1}" cy="${y1}" r="5" fill="#fffdf6"/><circle cx="${x2}" cy="${y2}" r="5" fill="#fffdf6"/>`;
+        });
+        if (scene === 'perpendicular')
+            drawing += `<g transform="translate(360 218) rotate(${variant % 2 ? 36 : 0})"><path d="M0-26h26v26" fill="none" stroke="#688979" stroke-width="2"/></g>`;
+    }
+    else {
+        drawing = base + cube(310, 220, 100) + subject;
+    }
+    const attrs = options.interactive ? ' tabindex="0" role="application" aria-label="放置物体画布。点击目标位置，拖动物体，或用方向键移动，按 Enter 提交。"' : ' role="img" aria-label="' + escapeHtml(options.description || '空间关系示意图') + '"';
+    return `<svg class="scene-svg ${options.interactive ? 'interactive' : ''}" viewBox="0 0 720 380" xmlns="http://www.w3.org/2000/svg"${attrs}><title>${escapeHtml(options.interactive ? '可操作的物体位置' : options.description || '空间关系示意图')}</title>${drawing}</svg>`;
+}
+
+},
+"store":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.STORAGE_KEY = void 0;
+exports.defaultState = defaultState;
+exports.loadStore = loadStore;
+exports.published = published;
+exports.createRequest = createRequest;
+exports.advanceJobs = advanceJobs;
+const content_1 = require("./content");
+exports.STORAGE_KEY = 'spatial-lab-demo-v1';
+function defaultState() {
+    const route = () => ({ primary: 'deepseek', secondary: 'qwen', fallbackApproved: false, revision: 1 });
+    return { version: 1, currentId: 'through', mode: 'zh', visited: [], revealed: [], hinted: [], withdrawn: [], attempts: [], jobs: [], mockEnabled: false, routes: { grade: route(), explain: route(), scene: route() }, logs: [], reduceMotion: false, nextFault: 'none' };
+}
+function loadStore(raw) {
+    const d = defaultState();
+    if (!raw)
+        return d;
+    try {
+        const p = JSON.parse(raw);
+        if (!p || p.version !== 1 || !Array.isArray(p.jobs) || !Array.isArray(p.attempts))
+            return d;
+        for (const k of ['visited', 'revealed', 'hinted', 'withdrawn'])
+            if (Array.isArray(p[k]))
+                d[k] = p[k].filter((x) => typeof x === 'string' && x.length < 100).slice(0, 400);
+        if (typeof p.currentId === 'string')
+            d.currentId = p.currentId;
+        if (['zh', 'en', 'place'].includes(p.mode))
+            d.mode = p.mode;
+        d.mockEnabled = p.mockEnabled === true;
+        d.reduceMotion = p.reduceMotion === true;
+        d.jobs = p.jobs.filter((j) => j && typeof j.term === 'string' && j.term.length <= 60 && typeof j.id === 'string' && ['requested', 'preparing', 'review', 'published', 'rejected', 'withdrawn'].includes(j.status) && Number.isFinite(j.createdAt) && (j.templateKey === null || Object.hasOwnProperty.call(content_1.extensionCards, j.templateKey))).slice(0, 100);
+        d.attempts = p.attempts.filter((a) => a && typeof a.cardId === 'string' && typeof a.at === 'number' && ['evaluated', 'not_evaluated'].includes(a.status) && ['rules', 'mock', 'geometry'].includes(a.source)).slice(-100);
+        d.logs = Array.isArray(p.logs) ? p.logs.filter((l) => l && typeof l.id === 'string' && typeof l.profile === 'string' && Number.isFinite(l.at)).slice(0, 40) : [];
+        for (const task of ['grade', 'explain', 'scene']) {
+            const r = p.routes?.[task];
+            if (r && ['deepseek', 'qwen'].includes(r.primary) && ['deepseek', 'qwen'].includes(r.secondary) && r.primary !== r.secondary)
+                d.routes[task] = { primary: r.primary, secondary: r.secondary, fallbackApproved: r.fallbackApproved === true, revision: Number.isInteger(r.revision) && r.revision > 0 ? r.revision : 1 };
+        }
+        return d;
+    }
+    catch {
+        return d;
+    }
+}
+function published(state) {
+    const extra = state.jobs.filter(j => j.status === 'published' && j.templateKey).map(j => ({ ...content_1.extensionCards[j.templateKey], revision: j.revision }));
+    return Array.from(new Map([...content_1.cards, ...extra].filter(c => !state.withdrawn.includes(c.id)).map(c => [c.id, c])).values());
+}
+function createRequest(state, term) {
+    const n = (0, content_1.normalizedWord)(term);
+    if (!n || n.length > 60)
+        throw Error('请填写 1–60 个字符的词或短语。');
+    const existing = state.jobs.find(j => (0, content_1.normalizedWord)(j.term) === n && !['rejected', 'withdrawn'].includes(j.status));
+    if (existing)
+        return { job: existing, created: false };
+    if (state.jobs.length >= 100)
+        throw Error('演示请求上限为 100 条，请先清理演示数据。');
+    const job = { id: 'local-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 6), term: n, templateKey: Object.hasOwnProperty.call(content_1.extensionCards, n) ? n : null, status: 'requested', createdAt: Date.now(), readyAt: null, revision: 1 };
+    state.jobs.unshift(job);
+    return { job, created: true };
+}
+function advanceJobs(state, now = Date.now()) {
+    let changed = false;
+    for (const j of state.jobs)
+        if (j.status === 'preparing' && j.readyAt !== null && now >= j.readyAt) {
+            j.status = 'review';
+            changed = true;
+        }
+    return changed;
+}
+
+},
+"types":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+
+},
+"ui":function(module,exports,require){
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.newUi = newUi;
+function newUi() { return { page: 'learn', category: 'all', search: '', unknown: '', answer: '', t: 0, playing: false, variant: 0, xray: false, showFrames: false, speed: 1, showTranslation: false, showHint: false, position: { x: 140, y: 290 }, result: null, busy: false, probeBusy: false, probeResult: null, probeTask: 'grade', libraryTab: 'published', modal: null, toast: '', compareT: .72, storageOk: true, lastRoutes: {} }; }
+
+}};const cache={};function require(name){const id=name.replace(/^\.\//,'').replace(/\.js$/,'');if(cache[id])return cache[id].exports;const module=cache[id]={exports:{}};if(!modules[id])throw new Error('Unknown local module '+id);modules[id](module,module.exports,require);return module.exports;}require('app');})();</script></body></html>
